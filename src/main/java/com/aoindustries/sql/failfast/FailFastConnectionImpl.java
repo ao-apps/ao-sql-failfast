@@ -344,7 +344,10 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
 
 	@Override
 	public boolean getAutoCommit() throws SQLException {
-		failFastSQLException();
+		// Allow during non-terminal fast-fail state because is used while trying to perform rollback
+		Throwable cause = failFastCause;
+		if(cause == ClosedSQLException.FAST_MARKER_KEEP_PRIVATE) throw new ClosedSQLException();
+		if(cause == AbortedSQLException.FAST_MARKER_KEEP_PRIVATE) throw new AbortedSQLException();
 		try {
 			return super.getAutoCommit();
 		} catch(Throwable t) {
