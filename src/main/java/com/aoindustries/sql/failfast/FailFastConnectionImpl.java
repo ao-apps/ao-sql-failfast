@@ -950,11 +950,6 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
 	 * <p>
 	 * This default implementation calls {@code super.close()}.
 	 * </p>
-	 * <p>
-	 * TODO: If already in a non-terminal fail-fast state, {@linkplain Connection#isValid(int) validates the connection},
-	 * then calls {@link #abort(java.util.concurrent.Executor)} instead when the connection is invalid.  This allows
-	 * underlying pools to know the connection should not be reused.
-	 * </p>
 	 *
 	 * @param  failFastCause  The fail-fast state before close.
 	 */
