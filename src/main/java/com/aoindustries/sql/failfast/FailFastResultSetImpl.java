@@ -24,6 +24,7 @@ package com.aoindustries.sql.failfast;
 
 import com.aoindustries.lang.Throwables;
 import com.aoindustries.sql.wrapper.ResultSetWrapperImpl;
+import com.aoindustries.sql.wrapper.StatementWrapperImpl;
 import java.io.InputStream;
 import java.io.Reader;
 import java.math.BigDecimal;
@@ -53,7 +54,7 @@ import java.util.Map;
 @SuppressWarnings({"UseSpecificCatch", "TooBroadCatch"})
 public class FailFastResultSetImpl extends ResultSetWrapperImpl {
 
-	public FailFastResultSetImpl(FailFastConnectionImpl failFastConnection, FailFastStatementImpl failFastStmt, ResultSet wrapped) {
+	public FailFastResultSetImpl(FailFastConnectionImpl failFastConnection, StatementWrapperImpl failFastStmt, ResultSet wrapped) {
 		super(failFastConnection, failFastStmt, wrapped);
 	}
 
@@ -1409,9 +1410,9 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
 	}
 
 	@Override
-	public FailFastStatementImpl getStatement() throws SQLException {
+	public StatementWrapperImpl getStatement() throws SQLException {
 		try {
-			return (FailFastStatementImpl)super.getStatement();
+			return super.getStatement();
 		} catch(Throwable t) {
 			getConnectionWrapper().addFailFastCause(t);
 			throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);

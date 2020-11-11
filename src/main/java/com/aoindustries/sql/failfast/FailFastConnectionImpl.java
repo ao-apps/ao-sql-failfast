@@ -234,7 +234,7 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
 
 	@Override
 	protected FailFastResultSetImpl newResultSetWrapper(StatementWrapperImpl stmtWrapper, ResultSet results) {
-		return new FailFastResultSetImpl(this, (FailFastStatementImpl)stmtWrapper, results);
+		return new FailFastResultSetImpl(this, stmtWrapper, results);
 	}
 
 	@Override
