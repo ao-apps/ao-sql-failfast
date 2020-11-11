@@ -36,7 +36,7 @@ along with ao-sql-failfast.  If not, see <http://www.gnu.org/licenses />.
 		title="@{documented.name} Changelog"
 		shortTitle="Changelog"
 		tocLevels="1"
-		datePublished="2020-11-02T20:00:56-06:00"
+		datePublished="2020-11-11T15:27:17-06:00"
 	>
 		<!-- The current snapshot, unreleased version -->
 		<c:set var="version" value="@{com.aoindustries:ao-sql-failfast:pom.version}" />
@@ -71,7 +71,7 @@ along with ao-sql-failfast.  If not, see <http://www.gnu.org/licenses />.
 							<code>jdbc:failfast:postgresql://<var>host</var>/<var>database</var></code>.
 						</p>
 						<p>
-							Finally, the following JDBC URL will perform fail-fast on top of <core:link book="/ao-sql/tracking" page="/index.jspx">tracking</core:link>:
+							Finally, the following JDBC URL will perform fail-fast on top of <core:link book="/ao-sql/tracker" page="/index.jspx">tracking</core:link>:
 							<code>jdbc:failfast:tracker:postgresql://<var>host</var>/<var>database</var></code>.
 						</p>
 					</li>
