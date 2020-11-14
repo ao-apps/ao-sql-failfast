@@ -24,6 +24,7 @@ package com.aoindustries.sql.failfast;
 
 import com.aoindustries.lang.Throwables;
 import com.aoindustries.sql.wrapper.ArrayWrapperImpl;
+import com.aoindustries.sql.wrapper.StatementWrapperImpl;
 import java.sql.Array;
 import java.sql.SQLException;
 import java.util.Map;
@@ -36,8 +37,8 @@ import java.util.Map;
 @SuppressWarnings({"UseSpecificCatch", "TooBroadCatch"})
 public class FailFastArrayImpl extends ArrayWrapperImpl {
 
-	public FailFastArrayImpl(FailFastConnectionImpl failFastConnection, FailFastStatementImpl failFastStmt, Array wrapped) {
-		super(failFastConnection, failFastStmt, wrapped);
+	public FailFastArrayImpl(FailFastConnectionImpl failFastConnection, StatementWrapperImpl stmtWrapper, Array wrapped) {
+		super(failFastConnection, stmtWrapper, wrapped);
 	}
 
 	@Override

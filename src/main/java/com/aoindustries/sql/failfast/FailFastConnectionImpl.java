@@ -174,7 +174,7 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
 
 	@Override
 	protected FailFastArrayImpl newArrayWrapper(StatementWrapperImpl stmtWrapper, Array array) {
-		return new FailFastArrayImpl(this, (FailFastStatementImpl)stmtWrapper, array);
+		return new FailFastArrayImpl(this, stmtWrapper, array);
 	}
 
 	@Override
