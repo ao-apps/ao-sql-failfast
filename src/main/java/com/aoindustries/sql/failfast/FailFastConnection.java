@@ -44,6 +44,7 @@ public interface FailFastConnection extends Wrapper, Connection {
 	@Override
 	Connection getWrapped();
 
+	// TODO: Add more states based on the type of SQLException and/or its SQLState.  Particularly to distinguish exceptions that will not require connection validation.
 	enum State {
 		/**
 		 * Normal operation
