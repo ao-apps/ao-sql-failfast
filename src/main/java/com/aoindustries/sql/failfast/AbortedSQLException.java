@@ -22,6 +22,7 @@
  */
 package com.aoindustries.sql.failfast;
 
+import com.aoindustries.lang.Throwables;
 import java.sql.Connection;
 
 /**
@@ -79,5 +80,18 @@ public class AbortedSQLException extends TerminalSQLException {
 	public AbortedSQLException(String reason, String sqlState, int vendorCode, Throwable cause) {
 		super(reason, sqlState, vendorCode, cause);
 		if(cause == FAST_MARKER_KEEP_PRIVATE) throw new IllegalArgumentException();
+	}
+
+	static {
+		Throwables.registerSurrogateFactory(AbortedSQLException.class, (template, cause) ->
+			(cause == AbortedSQLException.FAST_MARKER_KEEP_PRIVATE)
+				? new AbortedSQLException()
+				: new AbortedSQLException(
+					template.getMessage(),
+					template.getSQLState(),
+					template.getErrorCode(),
+					cause
+				)
+		);
 	}
 }

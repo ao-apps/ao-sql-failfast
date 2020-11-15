@@ -22,6 +22,7 @@
  */
 package com.aoindustries.sql.failfast;
 
+import com.aoindustries.lang.Throwables;
 import java.sql.SQLException;
 
 /**
@@ -63,5 +64,16 @@ public class FailFastSQLException extends SQLException {
 
 	public FailFastSQLException(String reason, String sqlState, int vendorCode, Throwable cause) {
 		super(reason, sqlState, vendorCode, cause);
+	}
+
+	static {
+		Throwables.registerSurrogateFactory(FailFastSQLException.class, (template, cause) ->
+			new FailFastSQLException(
+				template.getMessage(),
+				template.getSQLState(),
+				template.getErrorCode(),
+				cause
+			)
+		);
 	}
 }

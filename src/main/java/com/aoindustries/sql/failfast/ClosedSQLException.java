@@ -22,6 +22,7 @@
  */
 package com.aoindustries.sql.failfast;
 
+import com.aoindustries.lang.Throwables;
 import java.sql.Connection;
 
 /**
@@ -79,5 +80,18 @@ public class ClosedSQLException extends TerminalSQLException {
 	public ClosedSQLException(String reason, String sqlState, int vendorCode, Throwable cause) {
 		super(reason, sqlState, vendorCode, cause);
 		if(cause == FAST_MARKER_KEEP_PRIVATE) throw new IllegalArgumentException();
+	}
+
+	static {
+		Throwables.registerSurrogateFactory(ClosedSQLException.class, (template, cause) ->
+			(cause == ClosedSQLException.FAST_MARKER_KEEP_PRIVATE)
+				? new ClosedSQLException()
+				: new ClosedSQLException(
+					template.getMessage(),
+					template.getSQLState(),
+					template.getErrorCode(),
+					cause
+				)
+		);
 	}
 }
