@@ -27,6 +27,7 @@ import com.aoindustries.lang.Throwables;
 import com.aoindustries.sql.wrapper.ReaderWrapper;
 import java.io.IOException;
 import java.io.Reader;
+import java.io.UncheckedIOException;
 import java.nio.CharBuffer;
 
 /**
@@ -121,11 +122,13 @@ public class FailFastReader extends ReaderWrapper {
 	@Override
 	public boolean markSupported() {
 		FailFastConnectionImpl ffConn = getConnectionWrapper();
-		if(ffConn.getFailFastCause() == null) {
+		if(ffConn.getFailFastState() == FailFastConnection.State.OK) {
 			try {
 				return super.markSupported();
 			} catch(Throwable t) {
 				ffConn.addFailFastCause(t);
+				if(t instanceof UncheckedIOException) throw (UncheckedIOException)t;
+				if(t instanceof IOException) throw new UncheckedIOException((IOException)t);
 				throw Throwables.wrap(t, WrappedException.class, WrappedException::new);
 			}
 		} else {

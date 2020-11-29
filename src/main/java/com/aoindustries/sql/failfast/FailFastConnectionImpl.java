@@ -112,9 +112,9 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
 						State newState = State.getState(cause);
 						int diff = currentState.compareTo(newState);
 						if(diff > 0) {
-							if(!ThrowableUtil.isSuppressed(failFastCause, cause)) failFastCause.addSuppressed(cause);
+							if(!Throwables.isSuppressed(failFastCause, cause)) failFastCause.addSuppressed(cause);
 						} else if(diff < 0) {
-							if(!ThrowableUtil.isSuppressed(cause, failFastCause)) cause.addSuppressed(failFastCause);
+							if(!Throwables.isSuppressed(cause, failFastCause)) cause.addSuppressed(failFastCause);
 							failFastCause = cause;
 						} else {
 							failFastCause = Throwables.addSuppressed(failFastCause, cause);
@@ -127,7 +127,15 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
 
 	@Override
 	public Throwable getFailFastCause() {
-		return failFastCause;
+		Throwable cause = failFastCause;
+		if(cause == ClosedSQLException.FAST_MARKER_KEEP_PRIVATE) return new ClosedSQLException();
+		if(cause == AbortedSQLException.FAST_MARKER_KEEP_PRIVATE) return new AbortedSQLException();
+		return cause;
+	}
+
+	@Override
+	public State getFailFastState() {
+		return State.getState(failFastCause);
 	}
 
 	@Override
@@ -145,31 +153,83 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
 	/**
 	 * @throws  SQLException  if currently in a fail-fast state
 	 *
-	 * @see  ThrowableUtil#newFailFastSQLException(java.lang.Throwable)
+	 * @see  Throwables#newSurrogate(java.lang.Throwable)
 	 */
 	protected void failFastSQLException() throws SQLException {
 		Throwable cause = failFastCause;
-		if(cause != null) throw ThrowableUtil.newFailFastSQLException(cause);
+		if(cause != null) {
+			// Compare to the constants to distinguish from TerminalSQLException thrown by wrapped connections
+			if(cause == ClosedSQLException.FAST_MARKER_KEEP_PRIVATE) throw new ClosedSQLException();
+			if(cause == AbortedSQLException.FAST_MARKER_KEEP_PRIVATE) throw new AbortedSQLException();
+			// Include cause for all other
+			if(cause instanceof SQLException) {
+				SQLException template = (SQLException)cause;
+				SQLException surrogate = Throwables.newSurrogate(template);
+				if(surrogate != template) {
+					// Was wrapped, return the new exception of the same type as the cause
+					throw surrogate;
+				} else {
+					// Was a type that has no surrogate registered
+					throw new FailFastSQLException(
+						template.getMessage(),
+						template.getSQLState(),
+						template.getErrorCode(),
+						cause
+					);
+				}
+			} else {
+				throw new FailFastSQLException(cause);
+			}
+		}
+		assert cause == null : "Any cause must have been thrown";
 	}
 
 	/**
 	 * @throws  SQLClientInfoException  if currently in a fail-fast state
-	 *
-	 * @see  ThrowableUtil#newSQLClientInfoException(java.util.function.Supplier, java.lang.Throwable)
 	 */
 	protected void failFastSQLClientInfoException(Supplier<? extends Map<String,ClientInfoStatus>> failedPropertiesSupplier) throws SQLClientInfoException {
 		Throwable cause = failFastCause;
-		if(cause != null) throw ThrowableUtil.newSQLClientInfoException(failedPropertiesSupplier, cause);
+		if(cause != null) {
+			// Compare to the constants to distinguish from TerminalSQLException thrown by wrapped connections
+			if(cause == ClosedSQLException.FAST_MARKER_KEEP_PRIVATE) cause = new ClosedSQLException();
+			else if(cause == AbortedSQLException.FAST_MARKER_KEEP_PRIVATE) cause = new AbortedSQLException();
+			// Include cause for all other
+			Map<String,ClientInfoStatus> failedProperties = failedPropertiesSupplier.get();
+			if(cause instanceof SQLException) {
+				SQLException sqlEx = (SQLException)cause;
+				throw new SQLClientInfoException(
+					sqlEx.getMessage(),
+					sqlEx.getSQLState(),
+					sqlEx.getErrorCode(),
+					failedProperties,
+					cause
+				);
+			} else {
+				throw new SQLClientInfoException(failedProperties, cause);
+			}
+		}
+		assert cause == null : "Any cause must have been thrown";
 	}
 
 	/**
 	 * @throws  IOException  if currently in a fail-fast state
 	 *
-	 * @see  ThrowableUtil#newIOException(java.lang.Throwable)
+	 * @see  Throwables#newSurrogate(java.lang.Throwable)
 	 */
 	protected void failFastIOException() throws IOException {
 		Throwable cause = failFastCause;
-		if(cause != null) throw ThrowableUtil.newIOException(cause);
+		if(cause != null) {
+			// Compare to the constants to distinguish from TerminalSQLException thrown by wrapped connections
+			if(cause == ClosedSQLException.FAST_MARKER_KEEP_PRIVATE) cause = new ClosedSQLException();
+			else if(cause == AbortedSQLException.FAST_MARKER_KEEP_PRIVATE) cause = new AbortedSQLException();
+			// Include cause for all other
+			if(cause instanceof IOException) {
+				throw Throwables.newSurrogate((IOException)cause);
+			} else {
+				throw new IOException(cause);
+			}
+		}
+		assert cause == null : "Any cause must have been thrown";
 	}
 
 	@Override

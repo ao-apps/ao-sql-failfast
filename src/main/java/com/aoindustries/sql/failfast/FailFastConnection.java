@@ -106,6 +106,10 @@ public interface FailFastConnection extends Wrapper, Connection {
 
 	/**
 	 * Gets the cause of the current fail-fast state.
+	 * <p>
+	 * This might involve creating a new exception, so {@link #getFailFastState()} may be faster when the exact cause
+	 * is not required.
+	 * </p>
 	 *
 	 * @return  The cause or {@code null} when not in failure state (operating normally).
 	 *
@@ -120,9 +124,7 @@ public interface FailFastConnection extends Wrapper, Connection {
 	 *
 	 * @see  #getFailFastCause()
 	 */
-	default State getFailFastState() {
-		return State.getState(getFailFastCause());
-	}
+	State getFailFastState();
 
 	/**
 	 * Clears the cause of the current fail-fast state.

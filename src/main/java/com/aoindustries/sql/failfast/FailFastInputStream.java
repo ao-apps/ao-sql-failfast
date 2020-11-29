@@ -27,6 +27,7 @@ import com.aoindustries.lang.Throwables;
 import com.aoindustries.sql.wrapper.InputStreamWrapper;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UncheckedIOException;
 
 /**
  * @see  FailFastConnectionImpl
@@ -122,13 +123,18 @@ public class FailFastInputStream extends InputStreamWrapper {
 	@Override
 	public void mark(int readlimit) {
 		FailFastConnectionImpl ffConn = getConnectionWrapper();
-		if(ffConn.getFailFastCause() == null) {
-			try {
-				super.mark(readlimit);
-			} catch(Throwable t) {
-				ffConn.addFailFastCause(t);
-				throw Throwables.wrap(t, WrappedException.class, WrappedException::new);
-			}
+		try {
+			ffConn.failFastIOException();
+		} catch(IOException e) {
+			throw new UncheckedIOException(e);
+		}
+		try {
+			super.mark(readlimit);
+		} catch(Throwable t) {
+			ffConn.addFailFastCause(t);
+			if(t instanceof UncheckedIOException) throw (UncheckedIOException)t;
+			if(t instanceof IOException) throw new UncheckedIOException((IOException)t);
+			throw Throwables.wrap(t, WrappedException.class, WrappedException::new);
 		}
 	}
 
@@ -147,11 +153,13 @@ public class FailFastInputStream extends InputStreamWrapper {
 	@Override
 	public boolean markSupported() {
 		FailFastConnectionImpl ffConn = getConnectionWrapper();
-		if(ffConn.getFailFastCause() == null) {
+		if(ffConn.getFailFastState() == FailFastConnection.State.OK) {
 			try {
 				return super.markSupported();
 			} catch(Throwable t) {
 				ffConn.addFailFastCause(t);
+				if(t instanceof UncheckedIOException) throw (UncheckedIOException)t;
+				if(t instanceof IOException) throw new UncheckedIOException((IOException)t);
 				throw Throwables.wrap(t, WrappedException.class, WrappedException::new);
 			}
 		} else {
