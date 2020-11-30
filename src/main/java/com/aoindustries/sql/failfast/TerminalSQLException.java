@@ -37,10 +37,14 @@ public abstract class TerminalSQLException extends FailFastSQLException {
 	//	super(reason, sqlState, vendorCode);
 	//}
 
-	//public TerminalSQLException(String reason, String sqlState) {
-	//	super(reason, sqlState);
-	//}
+	public TerminalSQLException(String reason, String sqlState) {
+		super(reason, sqlState);
+	}
 
+	/**
+	 * @deprecated  Please provide SQLSTATE to {@link #TerminalSQLException(java.lang.String, java.lang.String)}
+	 */
+	@Deprecated
 	public TerminalSQLException(String reason) {
 		super(reason);
 	}

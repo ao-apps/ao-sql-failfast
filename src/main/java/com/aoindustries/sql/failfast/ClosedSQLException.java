@@ -59,7 +59,7 @@ public class ClosedSQLException extends TerminalSQLException {
 	//}
 
 	public ClosedSQLException() {
-		super("Connection closed");
+		super("Connection closed", "08000");
 	}
 
 	//public ClosedSQLException(Throwable cause) {

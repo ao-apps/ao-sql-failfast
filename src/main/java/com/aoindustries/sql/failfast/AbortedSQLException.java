@@ -59,7 +59,7 @@ public class AbortedSQLException extends TerminalSQLException {
 	//}
 
 	public AbortedSQLException() {
-		super("Connection aborted");
+		super("Connection aborted", "08003");
 	}
 
 	//public AbortedSQLException(Throwable cause) {

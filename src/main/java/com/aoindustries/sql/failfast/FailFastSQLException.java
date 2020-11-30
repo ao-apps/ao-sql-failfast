@@ -38,12 +38,16 @@ public class FailFastSQLException extends SQLException {
 	//	super(reason, sqlState, vendorCode);
 	//}
 
-	//public FailFastSQLException(String reason, String sqlState) {
-	//	super(reason, sqlState);
-	//}
+	public FailFastSQLException(String reason, String sqlState) {
+		super(reason, sqlState);
+	}
 
+	/**
+	 * @deprecated  Please provide SQLSTATE to {@link #FailFastSQLException(java.lang.String, java.lang.String)}
+	 */
+	@Deprecated
 	public FailFastSQLException(String reason) {
-		super(reason);
+		super(reason, "25000");
 	}
 
 	//public FailFastSQLException() {
@@ -51,7 +55,7 @@ public class FailFastSQLException extends SQLException {
 	//}
 
 	public FailFastSQLException(Throwable cause) {
-		super(cause);
+		super("In fail-fast connection state: clearFailFast, rollback, close, or abort required", "25000", cause);
 	}
 
 	//public FailFastSQLException(String reason, Throwable cause) {
