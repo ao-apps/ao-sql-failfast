@@ -1,6 +1,6 @@
 /*
  * ao-sql-failfast - Fail-fast JDBC wrapper.
- * Copyright (C) 2020  AO Industries, Inc.
+ * Copyright (C) 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -83,7 +83,7 @@ public class FailFastArrayImpl extends ArrayWrapperImpl {
 	}
 
 	@Override
-	public Object getArray(Map<String,Class<?>> map) throws SQLException {
+	public Object getArray(Map<String, Class<?>> map) throws SQLException {
 		FailFastConnectionImpl ffConn = getConnectionWrapper();
 		ffConn.failFastSQLException();
 		try {
@@ -107,7 +107,7 @@ public class FailFastArrayImpl extends ArrayWrapperImpl {
 	}
 
 	@Override
-	public Object getArray(long index, int count, Map<String,Class<?>> map) throws SQLException {
+	public Object getArray(long index, int count, Map<String, Class<?>> map) throws SQLException {
 		FailFastConnectionImpl ffConn = getConnectionWrapper();
 		ffConn.failFastSQLException();
 		try {
@@ -131,7 +131,7 @@ public class FailFastArrayImpl extends ArrayWrapperImpl {
 	}
 
 	@Override
-	public FailFastResultSetImpl getResultSet(Map<String,Class<?>> map) throws SQLException {
+	public FailFastResultSetImpl getResultSet(Map<String, Class<?>> map) throws SQLException {
 		FailFastConnectionImpl ffConn = getConnectionWrapper();
 		ffConn.failFastSQLException();
 		try {
@@ -155,7 +155,7 @@ public class FailFastArrayImpl extends ArrayWrapperImpl {
 	}
 
 	@Override
-	public FailFastResultSetImpl getResultSet(long index, int count, Map<String,Class<?>> map) throws SQLException {
+	public FailFastResultSetImpl getResultSet(long index, int count, Map<String, Class<?>> map) throws SQLException {
 		FailFastConnectionImpl ffConn = getConnectionWrapper();
 		ffConn.failFastSQLException();
 		try {

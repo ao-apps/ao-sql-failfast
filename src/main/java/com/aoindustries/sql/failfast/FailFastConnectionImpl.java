@@ -1,6 +1,6 @@
 /*
  * ao-sql-failfast - Fail-fast JDBC wrapper.
- * Copyright (C) 2020  AO Industries, Inc.
+ * Copyright (C) 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -187,14 +187,14 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
 	/**
 	 * @throws  SQLClientInfoException  if currently in a fail-fast state
 	 */
-	protected void failFastSQLClientInfoException(Supplier<? extends Map<String,ClientInfoStatus>> failedPropertiesSupplier) throws SQLClientInfoException {
+	protected void failFastSQLClientInfoException(Supplier<? extends Map<String, ClientInfoStatus>> failedPropertiesSupplier) throws SQLClientInfoException {
 		Throwable cause = failFastCause;
 		if(cause != null) {
 			// Compare to the constants to distinguish from TerminalSQLException thrown by wrapped connections
 			if(cause == ClosedSQLException.FAST_MARKER_KEEP_PRIVATE) cause = new ClosedSQLException();
 			else if(cause == AbortedSQLException.FAST_MARKER_KEEP_PRIVATE) cause = new AbortedSQLException();
 			// Include cause for all other
-			Map<String,ClientInfoStatus> failedProperties = failedPropertiesSupplier.get();
+			Map<String, ClientInfoStatus> failedProperties = failedPropertiesSupplier.get();
 			if(cause instanceof SQLException) {
 				SQLException sqlEx = (SQLException)cause;
 				throw new SQLClientInfoException(
@@ -622,7 +622,7 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
 	}
 
 	@Override
-	public Map<String,Class<?>> getTypeMap() throws SQLException {
+	public Map<String, Class<?>> getTypeMap() throws SQLException {
 		failFastSQLException();
 		try {
 			return super.getTypeMap();
@@ -633,7 +633,7 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
 	}
 
 	@Override
-	public void setTypeMap(Map<String,Class<?>> map) throws SQLException {
+	public void setTypeMap(Map<String, Class<?>> map) throws SQLException {
 		failFastSQLException();
 		try {
 			super.setTypeMap(map);
@@ -868,8 +868,8 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
 		}
 	}
 
-	private static Map<String,ClientInfoStatus> toClientInfoMap(Properties props) {
-		Map<String,ClientInfoStatus> map = AoCollections.newHashMap(props.size());
+	private static Map<String, ClientInfoStatus> toClientInfoMap(Properties props) {
+		Map<String, ClientInfoStatus> map = AoCollections.newHashMap(props.size());
 		for(Object key : props.keySet()) {
 			if(key instanceof String) map.put((String)key, ClientInfoStatus.REASON_UNKNOWN);
 		}

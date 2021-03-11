@@ -1,6 +1,6 @@
 /*
  * ao-sql-failfast - Fail-fast JDBC wrapper.
- * Copyright (C) 2020  AO Industries, Inc.
+ * Copyright (C) 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -1420,7 +1420,7 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
 	}
 
 	@Override
-	public Object getObject(int columnIndex, Map<String,Class<?>> map) throws SQLException {
+	public Object getObject(int columnIndex, Map<String, Class<?>> map) throws SQLException {
 		FailFastConnectionImpl ffConn = getConnectionWrapper();
 		ffConn.failFastSQLException();
 		try {
@@ -1480,7 +1480,7 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
 	}
 
 	@Override
-	public Object getObject(String columnLabel, Map<String,Class<?>> map) throws SQLException {
+	public Object getObject(String columnLabel, Map<String, Class<?>> map) throws SQLException {
 		FailFastConnectionImpl ffConn = getConnectionWrapper();
 		ffConn.failFastSQLException();
 		try {
