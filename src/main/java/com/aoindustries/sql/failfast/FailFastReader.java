@@ -1,6 +1,6 @@
 /*
  * ao-sql-failfast - Fail-fast JDBC wrapper.
- * Copyright (C) 2020  AO Industries, Inc.
+ * Copyright (C) 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -28,6 +28,7 @@ import com.aoindustries.sql.wrapper.ReaderWrapper;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.UncheckedIOException;
+import java.io.Writer;
 import java.nio.CharBuffer;
 
 /**
@@ -170,5 +171,15 @@ public class FailFastReader extends ReaderWrapper {
 		}
 	}
 
-	// Java 10: public long transferTo(Writer out) throws IOException;
+	@Override
+	public long transferTo(Writer out) throws IOException {
+		FailFastConnectionImpl ffConn = getConnectionWrapper();
+		ffConn.failFastIOException();
+		try {
+			return super.transferTo(out);
+		} catch(Throwable t) {
+			ffConn.addFailFastCause(t);
+			throw Throwables.wrap(t, IOException.class, IOException::new);
+		}
+	}
 }

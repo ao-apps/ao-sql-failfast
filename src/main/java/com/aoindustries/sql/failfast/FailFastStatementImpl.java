@@ -1,6 +1,6 @@
 /*
  * ao-sql-failfast - Fail-fast JDBC wrapper.
- * Copyright (C) 2020  AO Industries, Inc.
+ * Copyright (C) 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -635,8 +635,51 @@ public class FailFastStatementImpl extends StatementWrapperImpl {
 		}
 	}
 
-	// Java 9: String enquoteLiteral(String val)  throws SQLException;
-	// Java 9: String enquoteIdentifier(String identifier, boolean alwaysQuote) throws SQLException
-	// Java 9: boolean isSimpleIdentifier(String identifier) throws SQLException
-	// Java 9: String enquoteNCharLiteral(String val)  throws SQLException
+	@Override
+	public String enquoteLiteral(String val) throws SQLException {
+		FailFastConnectionImpl ffConn = getConnectionWrapper();
+		ffConn.failFastSQLException();
+		try {
+			return super.enquoteLiteral(val);
+		} catch(Throwable t) {
+			ffConn.addFailFastCause(t);
+			throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
+		}
+	}
+
+	@Override
+	public String enquoteIdentifier(String identifier, boolean alwaysQuote) throws SQLException {
+		FailFastConnectionImpl ffConn = getConnectionWrapper();
+		ffConn.failFastSQLException();
+		try {
+			return super.enquoteIdentifier(identifier, alwaysQuote);
+		} catch(Throwable t) {
+			ffConn.addFailFastCause(t);
+			throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
+		}
+	}
+
+	@Override
+	public boolean isSimpleIdentifier(String identifier) throws SQLException {
+		FailFastConnectionImpl ffConn = getConnectionWrapper();
+		ffConn.failFastSQLException();
+		try {
+			return super.isSimpleIdentifier(identifier);
+		} catch(Throwable t) {
+			ffConn.addFailFastCause(t);
+			throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
+		}
+	}
+
+	@Override
+	public String enquoteNCharLiteral(String val) throws SQLException {
+		FailFastConnectionImpl ffConn = getConnectionWrapper();
+		ffConn.failFastSQLException();
+		try {
+			return super.enquoteNCharLiteral(val);
+		} catch(Throwable t) {
+			ffConn.addFailFastCause(t);
+			throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
+		}
+	}
 }

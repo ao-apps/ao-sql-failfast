@@ -1,6 +1,6 @@
 /*
  * ao-sql-failfast - Fail-fast JDBC wrapper.
- * Copyright (C) 2020  AO Industries, Inc.
+ * Copyright (C) 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -27,6 +27,7 @@ import com.aoindustries.lang.Throwables;
 import com.aoindustries.sql.wrapper.InputStreamWrapper;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.UncheckedIOException;
 
 /**
@@ -82,9 +83,41 @@ public class FailFastInputStream extends InputStreamWrapper {
 		}
 	}
 
-	// Java 9: byte[] readAllBytes() throws IOException;
-	// Java 11: byte[] readNBytes(int len) throws IOException;
-	// Java 9: int readNBytes(byte[] b, int off, int len) throws IOException;
+	@Override
+	public byte[] readAllBytes() throws IOException {
+		FailFastConnectionImpl ffConn = getConnectionWrapper();
+		ffConn.failFastIOException();
+		try {
+			return super.readAllBytes();
+		} catch(Throwable t) {
+			ffConn.addFailFastCause(t);
+			throw Throwables.wrap(t, IOException.class, IOException::new);
+		}
+	}
+
+	@Override
+	public byte[] readNBytes(int len) throws IOException {
+		FailFastConnectionImpl ffConn = getConnectionWrapper();
+		ffConn.failFastIOException();
+		try {
+			return super.readNBytes(len);
+		} catch(Throwable t) {
+			ffConn.addFailFastCause(t);
+			throw Throwables.wrap(t, IOException.class, IOException::new);
+		}
+	}
+
+	@Override
+	public int readNBytes(byte[] b, int off, int len) throws IOException {
+		FailFastConnectionImpl ffConn = getConnectionWrapper();
+		ffConn.failFastIOException();
+		try {
+			return super.readNBytes(b, off, len);
+		} catch(Throwable t) {
+			ffConn.addFailFastCause(t);
+			throw Throwables.wrap(t, IOException.class, IOException::new);
+		}
+	}
 
 	@Override
 	public long skip(long n) throws IOException {
@@ -167,5 +200,15 @@ public class FailFastInputStream extends InputStreamWrapper {
 		}
 	}
 
-	// Java 9: long transferTo(OutputStream out) throws IOException;
+	@Override
+	public long transferTo(OutputStream out) throws IOException {
+		FailFastConnectionImpl ffConn = getConnectionWrapper();
+		ffConn.failFastIOException();
+		try {
+			return super.transferTo(out);
+		} catch(Throwable t) {
+			ffConn.addFailFastCause(t);
+			throw Throwables.wrap(t, IOException.class, IOException::new);
+		}
+	}
 }

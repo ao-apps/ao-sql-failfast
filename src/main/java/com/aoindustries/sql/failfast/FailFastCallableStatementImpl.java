@@ -656,10 +656,53 @@ public class FailFastCallableStatementImpl extends CallableStatementWrapperImpl 
 		}
 	}
 
-	// Java 9: String enquoteLiteral(String val)  throws SQLException;
-	// Java 9: String enquoteIdentifier(String identifier, boolean alwaysQuote) throws SQLException
-	// Java 9: boolean isSimpleIdentifier(String identifier) throws SQLException
-	// Java 9: String enquoteNCharLiteral(String val)  throws SQLException
+	@Override
+	public String enquoteLiteral(String val) throws SQLException {
+		FailFastConnectionImpl ffConn = getConnectionWrapper();
+		ffConn.failFastSQLException();
+		try {
+			return super.enquoteLiteral(val);
+		} catch(Throwable t) {
+			ffConn.addFailFastCause(t);
+			throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
+		}
+	}
+
+	@Override
+	public String enquoteIdentifier(String identifier, boolean alwaysQuote) throws SQLException {
+		FailFastConnectionImpl ffConn = getConnectionWrapper();
+		ffConn.failFastSQLException();
+		try {
+			return super.enquoteIdentifier(identifier, alwaysQuote);
+		} catch(Throwable t) {
+			ffConn.addFailFastCause(t);
+			throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
+		}
+	}
+
+	@Override
+	public boolean isSimpleIdentifier(String identifier) throws SQLException {
+		FailFastConnectionImpl ffConn = getConnectionWrapper();
+		ffConn.failFastSQLException();
+		try {
+			return super.isSimpleIdentifier(identifier);
+		} catch(Throwable t) {
+			ffConn.addFailFastCause(t);
+			throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
+		}
+	}
+
+	@Override
+	public String enquoteNCharLiteral(String val) throws SQLException {
+		FailFastConnectionImpl ffConn = getConnectionWrapper();
+		ffConn.failFastSQLException();
+		try {
+			return super.enquoteNCharLiteral(val);
+		} catch(Throwable t) {
+			ffConn.addFailFastCause(t);
+			throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
+		}
+	}
 
 	/*
 	 * PreparedStatement methods
@@ -870,7 +913,7 @@ public class FailFastCallableStatementImpl extends CallableStatementWrapperImpl 
 	}
 
 	@Override
-	@Deprecated // Java 9: (since="1.2")
+	@Deprecated(since="1.2")
 	public void setUnicodeStream(int parameterIndex, InputStream x, int length) throws SQLException {
 		FailFastConnectionImpl ffConn = getConnectionWrapper();
 		ffConn.failFastSQLException();
@@ -1497,7 +1540,7 @@ public class FailFastCallableStatementImpl extends CallableStatementWrapperImpl 
 	}
 
 	@Override
-	@Deprecated // Java 9: (since="1.2")
+	@Deprecated(since="1.2")
 	public BigDecimal getBigDecimal(int parameterIndex, int scale) throws SQLException {
 		FailFastConnectionImpl ffConn = getConnectionWrapper();
 		ffConn.failFastSQLException();

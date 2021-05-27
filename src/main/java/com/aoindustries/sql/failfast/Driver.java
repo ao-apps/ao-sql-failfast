@@ -1,6 +1,6 @@
 /*
  * ao-sql-failfast - Fail-fast JDBC wrapper.
- * Copyright (C) 2020  AO Industries, Inc.
+ * Copyright (C) 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -37,8 +37,7 @@ import java.util.logging.Logger;
  */
 public class Driver extends FailFastDriver {
 
-	// Java 9: Driver.class.getPackageName()
-	private static final Logger PARENT_LOGGER = Logger.getLogger(Driver.class.getPackage().getName());
+	private static final Logger PARENT_LOGGER = Logger.getLogger(Driver.class.getPackageName());
 
 	static {
 		try {

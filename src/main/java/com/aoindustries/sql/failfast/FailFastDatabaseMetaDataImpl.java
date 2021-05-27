@@ -1,6 +1,6 @@
 /*
  * ao-sql-failfast - Fail-fast JDBC wrapper.
- * Copyright (C) 2020  AO Industries, Inc.
+ * Copyright (C) 2020, 2021  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -2151,6 +2151,15 @@ public class FailFastDatabaseMetaDataImpl extends DatabaseMetaDataWrapperImpl {
 			throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
 		}
 	}
-
-	// Java 9: boolean supportsSharding() throws SQLException;
+	@Override
+	public boolean supportsSharding() throws SQLException {
+		FailFastConnectionImpl ffConn = getConnectionWrapper();
+		ffConn.failFastSQLException();
+		try {
+			return super.supportsSharding();
+		} catch(Throwable t) {
+			ffConn.addFailFastCause(t);
+			throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
+		}
+	}
 }

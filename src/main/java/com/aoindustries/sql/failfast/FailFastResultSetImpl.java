@@ -194,7 +194,7 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
 	}
 
 	@Override
-	@Deprecated // Java 9: (since="1.2")
+	@Deprecated(since="1.2")
 	public BigDecimal getBigDecimal(int columnIndex, int scale) throws SQLException {
 		FailFastConnectionImpl ffConn = getConnectionWrapper();
 		ffConn.failFastSQLException();
@@ -267,7 +267,7 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
 	}
 
 	@Override
-	@Deprecated // Java 9: (since="1.2")
+	@Deprecated(since="1.2")
 	public FailFastInputStream getUnicodeStream(int columnIndex) throws SQLException {
 		FailFastConnectionImpl ffConn = getConnectionWrapper();
 		ffConn.failFastSQLException();
@@ -388,7 +388,7 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
 	}
 
 	@Override
-	@Deprecated // Java 9: (since="1.2")
+	@Deprecated(since="1.2")
 	public BigDecimal getBigDecimal(String columnLabel, int scale) throws SQLException {
 		FailFastConnectionImpl ffConn = getConnectionWrapper();
 		ffConn.failFastSQLException();
@@ -461,7 +461,7 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
 	}
 
 	@Override
-	@Deprecated // Java 9: (since="1.2")
+	@Deprecated(since="1.2")
 	public FailFastInputStream getUnicodeStream(String columnLabel) throws SQLException {
 		FailFastConnectionImpl ffConn = getConnectionWrapper();
 		ffConn.failFastSQLException();
