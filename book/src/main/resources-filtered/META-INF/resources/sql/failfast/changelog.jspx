@@ -37,7 +37,7 @@ along with ao-sql-failfast.  If not, see <http://www.gnu.org/licenses />.
 		shortTitle="Changelog"
 		tocLevels="1"
 		datePublished="2020-11-11T15:27:17-06:00"
-		dateModified="2021-06-03T22:53:21-05:00"
+		dateModified="2021-06-27T16:13:41-05:00"
 	>
 		<c:if test="${fn:endsWith('@{project.version}', '-SNAPSHOT') and !fn:endsWith('@{project.version}', '-POST-SNAPSHOT')}">
 			<changelog:release
@@ -50,6 +50,7 @@ along with ao-sql-failfast.  If not, see <http://www.gnu.org/licenses />.
 			>
 				<ul>
 					<li>Minimum Java version changed from 1.8 to 11.</li>
+					<li>Now supports Java 9+ modules with included <code>module-info.class</code>.</li>
 					<li>Maven artifact relocated from <code>com.aoindustries:ao-sql-failfast</code> to <code>com.aoapps:ao-sql-failfast</code>.</li>
 					<li>Package renamed from <code>com.aoindustries.sql.failfast</code> to <code>com.aoapps.sql.failfast</code>.</li>
 				</ul>
@@ -67,7 +68,7 @@ along with ao-sql-failfast.  If not, see <http://www.gnu.org/licenses />.
 			<ul>
 				<li>
 					Defined <ao:a href="https://en.wikipedia.org/wiki/SQLSTATE">SQLSTATE</ao:a> values for all
-					<ao:a rel="nofollow" href="@{javadoc.link.javase}java/sql/SQLException.html">SQLException</ao:a>.
+					<ao:a rel="nofollow" href="@{javadoc.link.javase}java.sql/java/sql/SQLException.html">SQLException</ao:a>.
 				</li>
 			</ul>
 		</changelog:release>
@@ -83,9 +84,9 @@ along with ao-sql-failfast.  If not, see <http://www.gnu.org/licenses />.
 			<ul>
 				<li>
 					New project for fail-fast JDBC wrapper that makes a
-					<ao:a rel="nofollow" href="@{javadoc.link.javase}java/sql/Connection.html">Connection</ao:a>
+					<ao:a rel="nofollow" href="@{javadoc.link.javase}java.sql/java/sql/Connection.html">Connection</ao:a>
 					perform in a fail-fast manner.  All access to the connection will fail once a
-					<ao:a rel="nofollow" href="@{javadoc.link.javase}java/lang/Throwable.html">Throwable</ao:a>
+					<ao:a rel="nofollow" href="@{javadoc.link.javase}java.base/java/lang/Throwable.html">Throwable</ao:a>
 					has been thrown by the underlying driver, with this state only being cleared by rollback.
 				</li>
 				<li>
