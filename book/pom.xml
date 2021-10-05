@@ -71,20 +71,20 @@ along with ao-sql-failfast.  If not, see <http://www.gnu.org/licenses />.
 	</developers>
 
 	<scm>
-		<connection>scm:git:git://github.com/aoindustries/ao-sql-failfast.git</connection>
-		<developerConnection>scm:git:git@github.com:aoindustries/ao-sql-failfast.git</developerConnection>
-		<url>https://github.com/aoindustries/ao-sql-failfast</url>
+		<connection>scm:git:git://github.com/ao-apps/ao-sql-failfast.git</connection>
+		<developerConnection>scm:git:git@github.com:ao-apps/ao-sql-failfast.git</developerConnection>
+		<url>https://github.com/ao-apps/ao-sql-failfast</url>
 		<tag>HEAD</tag>
 	</scm>
 
 	<issueManagement>
 		<system>GitHub Issues</system>
-		<url>https://github.com/aoindustries/ao-sql-failfast/issues</url>
+		<url>https://github.com/ao-apps/ao-sql-failfast/issues</url>
 	</issueManagement>
 
 	<ciManagement>
 		<system>GitHub Actions</system>
-		<url>https://github.com/aoindustries/ao-sql-failfast/actions</url>
+		<url>https://github.com/ao-apps/ao-sql-failfast/actions</url>
 	</ciManagement>
 
 	<repositories>
