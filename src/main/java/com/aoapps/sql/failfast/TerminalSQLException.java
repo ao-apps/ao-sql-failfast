@@ -37,7 +37,7 @@ public abstract class TerminalSQLException extends FailFastSQLException {
 	//	super(reason, sqlState, vendorCode);
 	//}
 
-	public TerminalSQLException(String reason, String sqlState) {
+	protected TerminalSQLException(String reason, String sqlState) {
 		super(reason, sqlState);
 	}
 
@@ -45,27 +45,27 @@ public abstract class TerminalSQLException extends FailFastSQLException {
 	 * @deprecated  Please provide SQLSTATE to {@link #TerminalSQLException(java.lang.String, java.lang.String)}
 	 */
 	@Deprecated
-	public TerminalSQLException(String reason) {
+	protected TerminalSQLException(String reason) {
 		super(reason);
 	}
 
-	//public TerminalSQLException() {
+	//protected TerminalSQLException() {
 	//	super();
 	//}
 
-	//public TerminalSQLException(Throwable cause) {
+	//protected TerminalSQLException(Throwable cause) {
 	//	super(cause);
 	//}
 
-	//public TerminalSQLException(String reason, Throwable cause) {
+	//protected TerminalSQLException(String reason, Throwable cause) {
 	//	super(reason, cause);
 	//}
 
-	//public TerminalSQLException(String reason, String sqlState, Throwable cause) {
+	//protected TerminalSQLException(String reason, String sqlState, Throwable cause) {
 	//	super(reason, sqlState, cause);
 	//}
 
-	public TerminalSQLException(String reason, String sqlState, int vendorCode, Throwable cause) {
+	protected TerminalSQLException(String reason, String sqlState, int vendorCode, Throwable cause) {
 		super(reason, sqlState, vendorCode, cause);
 	}
 }

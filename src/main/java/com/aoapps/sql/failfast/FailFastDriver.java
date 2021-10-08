@@ -36,7 +36,7 @@ import java.sql.SQLException;
  */
 public abstract class FailFastDriver extends DriverWrapper {
 
-	public FailFastDriver() {}
+	protected FailFastDriver() {}
 
 	@Override
 	protected FailFastConnectionImpl newConnectionWrapper(Connection connection) {
