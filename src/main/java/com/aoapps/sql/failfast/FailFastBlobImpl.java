@@ -81,7 +81,7 @@ public class FailFastBlobImpl extends BlobWrapperImpl {
 	}
 
 	@Override
-	public long position(byte pattern[], long start) throws SQLException {
+	public long position(byte[] pattern, long start) throws SQLException {
 		FailFastConnectionImpl ffConn = getConnectionWrapper();
 		ffConn.failFastSQLException();
 		try {

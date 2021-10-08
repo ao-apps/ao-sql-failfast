@@ -73,7 +73,7 @@ public class FailFastReader extends ReaderWrapper {
 	}
 
 	@Override
-	public int read(char cbuf[]) throws IOException {
+	public int read(char[] cbuf) throws IOException {
 		FailFastConnectionImpl ffConn = getConnectionWrapper();
 		ffConn.failFastIOException();
 		try {
@@ -85,7 +85,7 @@ public class FailFastReader extends ReaderWrapper {
 	}
 
 	@Override
-	public int read(char cbuf[], int off, int len) throws IOException {
+	public int read(char[] cbuf, int off, int len) throws IOException {
 		FailFastConnectionImpl ffConn = getConnectionWrapper();
 		ffConn.failFastIOException();
 		try {

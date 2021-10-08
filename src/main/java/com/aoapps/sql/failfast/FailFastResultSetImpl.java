@@ -990,7 +990,7 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
 	}
 
 	@Override
-	public void updateBytes(int columnIndex, byte x[]) throws SQLException {
+	public void updateBytes(int columnIndex, byte[] x) throws SQLException {
 		FailFastConnectionImpl ffConn = getConnectionWrapper();
 		ffConn.failFastSQLException();
 		try {
@@ -1218,7 +1218,7 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
 	}
 
 	@Override
-	public void updateBytes(String columnLabel, byte x[]) throws SQLException {
+	public void updateBytes(String columnLabel, byte[] x) throws SQLException {
 		FailFastConnectionImpl ffConn = getConnectionWrapper();
 		ffConn.failFastSQLException();
 		try {

@@ -57,7 +57,7 @@ public class FailFastWriter extends WriterWrapper {
 	}
 
 	@Override
-	public void write(char cbuf[]) throws IOException {
+	public void write(char[] cbuf) throws IOException {
 		FailFastConnectionImpl ffConn = getConnectionWrapper();
 		ffConn.failFastIOException();
 		try {
@@ -69,7 +69,7 @@ public class FailFastWriter extends WriterWrapper {
 	}
 
 	@Override
-	public void write(char cbuf[], int off, int len) throws IOException {
+	public void write(char[] cbuf, int off, int len) throws IOException {
 		FailFastConnectionImpl ffConn = getConnectionWrapper();
 		ffConn.failFastIOException();
 		try {

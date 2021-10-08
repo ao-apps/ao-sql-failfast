@@ -1483,7 +1483,7 @@ public class FailFastDatabaseMetaDataImpl extends DatabaseMetaDataWrapperImpl {
 	}
 
 	@Override
-	public FailFastResultSetImpl getTables(String catalog, String schemaPattern, String tableNamePattern, String types[]) throws SQLException {
+	public FailFastResultSetImpl getTables(String catalog, String schemaPattern, String tableNamePattern, String[] types) throws SQLException {
 		FailFastConnectionImpl ffConn = getConnectionWrapper();
 		ffConn.failFastSQLException();
 		try {

@@ -60,7 +60,7 @@ public class FailFastInputStream extends InputStreamWrapper {
 	}
 
 	@Override
-	public int read(byte b[]) throws IOException {
+	public int read(byte[] b) throws IOException {
 		FailFastConnectionImpl ffConn = getConnectionWrapper();
 		ffConn.failFastIOException();
 		try {
@@ -72,7 +72,7 @@ public class FailFastInputStream extends InputStreamWrapper {
 	}
 
 	@Override
-	public int read(byte b[], int off, int len) throws IOException {
+	public int read(byte[] b, int off, int len) throws IOException {
 		FailFastConnectionImpl ffConn = getConnectionWrapper();
 		ffConn.failFastIOException();
 		try {

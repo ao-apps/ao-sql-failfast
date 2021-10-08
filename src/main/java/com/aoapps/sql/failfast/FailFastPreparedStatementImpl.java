@@ -430,7 +430,7 @@ public class FailFastPreparedStatementImpl extends PreparedStatementWrapperImpl 
 	}
 
 	@Override
-	public int executeUpdate(String sql, int columnIndexes[]) throws SQLException {
+	public int executeUpdate(String sql, int[] columnIndexes) throws SQLException {
 		FailFastConnectionImpl ffConn = getConnectionWrapper();
 		ffConn.failFastSQLException();
 		try {
@@ -442,7 +442,7 @@ public class FailFastPreparedStatementImpl extends PreparedStatementWrapperImpl 
 	}
 
 	@Override
-	public int executeUpdate(String sql, String columnNames[]) throws SQLException {
+	public int executeUpdate(String sql, String[] columnNames) throws SQLException {
 		FailFastConnectionImpl ffConn = getConnectionWrapper();
 		ffConn.failFastSQLException();
 		try {
@@ -466,7 +466,7 @@ public class FailFastPreparedStatementImpl extends PreparedStatementWrapperImpl 
 	}
 
 	@Override
-	public boolean execute(String sql, int columnIndexes[]) throws SQLException {
+	public boolean execute(String sql, int[] columnIndexes) throws SQLException {
 		FailFastConnectionImpl ffConn = getConnectionWrapper();
 		ffConn.failFastSQLException();
 		try {
@@ -478,7 +478,7 @@ public class FailFastPreparedStatementImpl extends PreparedStatementWrapperImpl 
 	}
 
 	@Override
-	public boolean execute(String sql, String columnNames[]) throws SQLException {
+	public boolean execute(String sql, String[] columnNames) throws SQLException {
 		FailFastConnectionImpl ffConn = getConnectionWrapper();
 		ffConn.failFastSQLException();
 		try {
@@ -632,7 +632,7 @@ public class FailFastPreparedStatementImpl extends PreparedStatementWrapperImpl 
 	}
 
 	@Override
-	public long executeLargeUpdate(String sql, int columnIndexes[]) throws SQLException {
+	public long executeLargeUpdate(String sql, int[] columnIndexes) throws SQLException {
 		FailFastConnectionImpl ffConn = getConnectionWrapper();
 		ffConn.failFastSQLException();
 		try {
@@ -644,7 +644,7 @@ public class FailFastPreparedStatementImpl extends PreparedStatementWrapperImpl 
 	}
 
 	@Override
-	public long executeLargeUpdate(String sql, String columnNames[]) throws SQLException {
+	public long executeLargeUpdate(String sql, String[] columnNames) throws SQLException {
 		FailFastConnectionImpl ffConn = getConnectionWrapper();
 		ffConn.failFastSQLException();
 		try {
@@ -852,7 +852,7 @@ public class FailFastPreparedStatementImpl extends PreparedStatementWrapperImpl 
 	}
 
 	@Override
-	public void setBytes(int parameterIndex, byte x[]) throws SQLException {
+	public void setBytes(int parameterIndex, byte[] x) throws SQLException {
 		FailFastConnectionImpl ffConn = getConnectionWrapper();
 		ffConn.failFastSQLException();
 		try {

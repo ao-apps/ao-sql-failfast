@@ -768,7 +768,7 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
 	}
 
 	@Override
-	public FailFastPreparedStatementImpl prepareStatement(String sql, int columnIndexes[]) throws SQLException {
+	public FailFastPreparedStatementImpl prepareStatement(String sql, int[] columnIndexes) throws SQLException {
 		failFastSQLException();
 		try {
 			return (FailFastPreparedStatementImpl)super.prepareStatement(sql, columnIndexes);
@@ -779,7 +779,7 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
 	}
 
 	@Override
-	public FailFastPreparedStatementImpl prepareStatement(String sql, String columnNames[]) throws SQLException {
+	public FailFastPreparedStatementImpl prepareStatement(String sql, String[] columnNames) throws SQLException {
 		failFastSQLException();
 		try {
 			return (FailFastPreparedStatementImpl)super.prepareStatement(sql, columnNames);
