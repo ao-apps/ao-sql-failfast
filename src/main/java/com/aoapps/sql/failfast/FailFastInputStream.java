@@ -165,8 +165,6 @@ public class FailFastInputStream extends InputStreamWrapper {
 			super.mark(readlimit);
 		} catch(Throwable t) {
 			ffConn.addFailFastCause(t);
-			if(t instanceof UncheckedIOException) throw (UncheckedIOException)t;
-			if(t instanceof IOException) throw new UncheckedIOException((IOException)t);
 			throw Throwables.wrap(t, WrappedException.class, WrappedException::new);
 		}
 	}
@@ -191,8 +189,6 @@ public class FailFastInputStream extends InputStreamWrapper {
 				return super.markSupported();
 			} catch(Throwable t) {
 				ffConn.addFailFastCause(t);
-				if(t instanceof UncheckedIOException) throw (UncheckedIOException)t;
-				if(t instanceof IOException) throw new UncheckedIOException((IOException)t);
 				throw Throwables.wrap(t, WrappedException.class, WrappedException::new);
 			}
 		} else {
