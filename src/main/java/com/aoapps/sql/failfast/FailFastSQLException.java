@@ -45,7 +45,7 @@ public class FailFastSQLException extends SQLException {
 	/**
 	 * @deprecated  Please provide SQLSTATE to {@link #FailFastSQLException(java.lang.String, java.lang.String)}
 	 */
-	@Deprecated
+	@Deprecated(forRemoval = false)
 	public FailFastSQLException(String reason) {
 		super(reason, "25000");
 	}

@@ -44,7 +44,7 @@ public abstract class TerminalSQLException extends FailFastSQLException {
 	/**
 	 * @deprecated  Please provide SQLSTATE to {@link #TerminalSQLException(java.lang.String, java.lang.String)}
 	 */
-	@Deprecated
+	@Deprecated(forRemoval = false)
 	protected TerminalSQLException(String reason) {
 		super(reason);
 	}
