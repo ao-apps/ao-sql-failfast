@@ -72,7 +72,7 @@ import java.util.function.Supplier;
 @SuppressWarnings({"UseSpecificCatch", "TooBroadCatch"})
 public class FailFastConnectionImpl extends ConnectionWrapperImpl implements FailFastConnection {
 
-	private static class FailFastLock {}
+	private static class FailFastLock {/* Empty lock class to help heap profile */}
 	private final FailFastLock failFastLock = new FailFastLock();
 
 	/**
