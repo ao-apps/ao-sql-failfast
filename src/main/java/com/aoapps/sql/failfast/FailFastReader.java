@@ -27,7 +27,6 @@ import com.aoapps.lang.exception.WrappedException;
 import com.aoapps.sql.wrapper.ReaderWrapper;
 import java.io.IOException;
 import java.io.Reader;
-import java.io.UncheckedIOException;
 import java.io.Writer;
 import java.nio.CharBuffer;
 
