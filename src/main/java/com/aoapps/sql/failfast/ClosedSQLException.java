@@ -35,64 +35,72 @@ import java.sql.Connection;
  */
 public class ClosedSQLException extends TerminalSQLException {
 
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	/**
-	 * This instance is stored during normal close.  It will never have suppressed throwables added to it, will never be
-	 * used as an exception cause, and will never be thrown.  When this is the fail-fast cause, exceptions will be
-	 * thrown without a cause.
-	 */
-	static final ClosedSQLException FAST_MARKER_KEEP_PRIVATE = new ClosedSQLException();
-	static {
-		FAST_MARKER_KEEP_PRIVATE.setStackTrace(new StackTraceElement[0]);
-	}
+  /**
+   * This instance is stored during normal close.  It will never have suppressed throwables added to it, will never be
+   * used as an exception cause, and will never be thrown.  When this is the fail-fast cause, exceptions will be
+   * thrown without a cause.
+   */
+  static final ClosedSQLException FAST_MARKER_KEEP_PRIVATE = new ClosedSQLException();
+  static {
+    FAST_MARKER_KEEP_PRIVATE.setStackTrace(new StackTraceElement[0]);
+  }
 
-	//public ClosedSQLException(String reason, String sqlState, int vendorCode) {
-	//	super(reason, sqlState, vendorCode);
-	//}
+  //public ClosedSQLException(String reason, String sqlState, int vendorCode) {
+  //  super(reason, sqlState, vendorCode);
+  //}
 
-	//public ClosedSQLException(String reason, String sqlState) {
-	//	super(reason, sqlState);
-	//}
+  //public ClosedSQLException(String reason, String sqlState) {
+  //  super(reason, sqlState);
+  //}
 
-	//public ClosedSQLException(String reason) {
-	//	super(reason);
-	//}
+  //public ClosedSQLException(String reason) {
+  //  super(reason);
+  //}
 
-	public ClosedSQLException() {
-		super("Connection closed", "08000");
-	}
+  public ClosedSQLException() {
+    super("Connection closed", "08000");
+  }
 
-	//public ClosedSQLException(Throwable cause) {
-	//	super(cause);
-	//	if(cause == FAST_MARKER_KEEP_PRIVATE) throw new IllegalArgumentException();
-	//}
+  //public ClosedSQLException(Throwable cause) {
+  //  super(cause);
+  //  if (cause == FAST_MARKER_KEEP_PRIVATE) {
+  //    throw new IllegalArgumentException();
+  //  }
+  //}
 
-	//public ClosedSQLException(String reason, Throwable cause) {
-	//	super(reason, cause);
-	//	if(cause == FAST_MARKER_KEEP_PRIVATE) throw new IllegalArgumentException();
-	//}
+  //public ClosedSQLException(String reason, Throwable cause) {
+  //  super(reason, cause);
+  //  if (cause == FAST_MARKER_KEEP_PRIVATE) {
+  //    throw new IllegalArgumentException();
+  //  }
+  //}
 
-	//public ClosedSQLException(String reason, String sqlState, Throwable cause) {
-	//	super(reason, sqlState, cause);
-	//	if(cause == FAST_MARKER_KEEP_PRIVATE) throw new IllegalArgumentException();
-	//}
+  //public ClosedSQLException(String reason, String sqlState, Throwable cause) {
+  //  super(reason, sqlState, cause);
+  //  if (cause == FAST_MARKER_KEEP_PRIVATE) {
+  //    throw new IllegalArgumentException();
+  //  }
+  //}
 
-	public ClosedSQLException(String reason, String sqlState, int vendorCode, Throwable cause) {
-		super(reason, sqlState, vendorCode, cause);
-		if(cause == FAST_MARKER_KEEP_PRIVATE) throw new IllegalArgumentException();
-	}
+  public ClosedSQLException(String reason, String sqlState, int vendorCode, Throwable cause) {
+    super(reason, sqlState, vendorCode, cause);
+    if (cause == FAST_MARKER_KEEP_PRIVATE) {
+      throw new IllegalArgumentException();
+    }
+  }
 
-	static {
-		Throwables.registerSurrogateFactory(ClosedSQLException.class, (template, cause) ->
-			(cause == ClosedSQLException.FAST_MARKER_KEEP_PRIVATE)
-				? new ClosedSQLException()
-				: new ClosedSQLException(
-					template.getMessage(),
-					template.getSQLState(),
-					template.getErrorCode(),
-					cause
-				)
-		);
-	}
+  static {
+    Throwables.registerSurrogateFactory(ClosedSQLException.class, (template, cause) ->
+      (cause == ClosedSQLException.FAST_MARKER_KEEP_PRIVATE)
+        ? new ClosedSQLException()
+        : new ClosedSQLException(
+          template.getMessage(),
+          template.getSQLState(),
+          template.getErrorCode(),
+          cause
+        )
+    );
+  }
 }

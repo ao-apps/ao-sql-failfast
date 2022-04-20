@@ -37,12 +37,12 @@ import java.sql.SQLException;
  */
 public abstract class FailFastDriver extends DriverWrapper {
 
-	protected FailFastDriver() {
-		// Do nothing
-	}
+  protected FailFastDriver() {
+    // Do nothing
+  }
 
-	@Override
-	protected FailFastConnectionImpl newConnectionWrapper(Connection connection) {
-		return new FailFastConnectionImpl(this, connection);
-	}
+  @Override
+  protected FailFastConnectionImpl newConnectionWrapper(Connection connection) {
+    return new FailFastConnectionImpl(this, connection);
+  }
 }

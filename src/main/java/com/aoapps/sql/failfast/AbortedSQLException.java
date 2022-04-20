@@ -35,64 +35,72 @@ import java.sql.Connection;
  */
 public class AbortedSQLException extends TerminalSQLException {
 
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	/**
-	 * This instance is stored during abort.  It will never have suppressed throwables added to it, will never be
-	 * used as an exception cause, and will never be thrown.  When this is the fail-fast cause, exceptions will be
-	 * thrown without a cause.
-	 */
-	static final AbortedSQLException FAST_MARKER_KEEP_PRIVATE = new AbortedSQLException();
-	static {
-		FAST_MARKER_KEEP_PRIVATE.setStackTrace(new StackTraceElement[0]);
-	}
+  /**
+   * This instance is stored during abort.  It will never have suppressed throwables added to it, will never be
+   * used as an exception cause, and will never be thrown.  When this is the fail-fast cause, exceptions will be
+   * thrown without a cause.
+   */
+  static final AbortedSQLException FAST_MARKER_KEEP_PRIVATE = new AbortedSQLException();
+  static {
+    FAST_MARKER_KEEP_PRIVATE.setStackTrace(new StackTraceElement[0]);
+  }
 
-	//public AbortedSQLException(String reason, String sqlState, int vendorCode) {
-	//	super(reason, sqlState, vendorCode);
-	//}
+  //public AbortedSQLException(String reason, String sqlState, int vendorCode) {
+  //  super(reason, sqlState, vendorCode);
+  //}
 
-	//public AbortedSQLException(String reason, String sqlState) {
-	//	super(reason, sqlState);
-	//}
+  //public AbortedSQLException(String reason, String sqlState) {
+  //  super(reason, sqlState);
+  //}
 
-	//public AbortedSQLException(String reason) {
-	//	super(reason);
-	//}
+  //public AbortedSQLException(String reason) {
+  //  super(reason);
+  //}
 
-	public AbortedSQLException() {
-		super("Connection aborted", "08003");
-	}
+  public AbortedSQLException() {
+    super("Connection aborted", "08003");
+  }
 
-	//public AbortedSQLException(Throwable cause) {
-	//	super(cause);
-	//	if(cause == FAST_MARKER_KEEP_PRIVATE) throw new IllegalArgumentException();
-	//}
+  //public AbortedSQLException(Throwable cause) {
+  //  super(cause);
+  //  if (cause == FAST_MARKER_KEEP_PRIVATE) {
+  //    throw new IllegalArgumentException();
+  //  }
+  //}
 
-	//public AbortedSQLException(String reason, Throwable cause) {
-	//	super(reason, cause);
-	//	if(cause == FAST_MARKER_KEEP_PRIVATE) throw new IllegalArgumentException();
-	//}
+  //public AbortedSQLException(String reason, Throwable cause) {
+  //  super(reason, cause);
+  //  if (cause == FAST_MARKER_KEEP_PRIVATE) {
+  //    throw new IllegalArgumentException();
+  //  }
+  //}
 
-	//public AbortedSQLException(String reason, String sqlState, Throwable cause) {
-	//	super(reason, sqlState, cause);
-	//	if(cause == FAST_MARKER_KEEP_PRIVATE) throw new IllegalArgumentException();
-	//}
+  //public AbortedSQLException(String reason, String sqlState, Throwable cause) {
+  //  super(reason, sqlState, cause);
+  //  if (cause == FAST_MARKER_KEEP_PRIVATE) {
+  //    throw new IllegalArgumentException();
+  //  }
+  //}
 
-	public AbortedSQLException(String reason, String sqlState, int vendorCode, Throwable cause) {
-		super(reason, sqlState, vendorCode, cause);
-		if(cause == FAST_MARKER_KEEP_PRIVATE) throw new IllegalArgumentException();
-	}
+  public AbortedSQLException(String reason, String sqlState, int vendorCode, Throwable cause) {
+    super(reason, sqlState, vendorCode, cause);
+    if (cause == FAST_MARKER_KEEP_PRIVATE) {
+      throw new IllegalArgumentException();
+    }
+  }
 
-	static {
-		Throwables.registerSurrogateFactory(AbortedSQLException.class, (template, cause) ->
-			(cause == AbortedSQLException.FAST_MARKER_KEEP_PRIVATE)
-				? new AbortedSQLException()
-				: new AbortedSQLException(
-					template.getMessage(),
-					template.getSQLState(),
-					template.getErrorCode(),
-					cause
-				)
-		);
-	}
+  static {
+    Throwables.registerSurrogateFactory(AbortedSQLException.class, (template, cause) ->
+      (cause == AbortedSQLException.FAST_MARKER_KEEP_PRIVATE)
+        ? new AbortedSQLException()
+        : new AbortedSQLException(
+          template.getMessage(),
+          template.getSQLState(),
+          template.getErrorCode(),
+          cause
+        )
+    );
+  }
 }

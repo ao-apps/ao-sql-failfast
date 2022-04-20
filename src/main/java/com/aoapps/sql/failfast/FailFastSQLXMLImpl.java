@@ -38,118 +38,118 @@ import javax.xml.transform.Source;
 @SuppressWarnings({"UseSpecificCatch", "TooBroadCatch"})
 public class FailFastSQLXMLImpl extends SQLXMLWrapperImpl {
 
-	public FailFastSQLXMLImpl(FailFastConnectionImpl failFastConnection, SQLXML wrapped) {
-		super(failFastConnection, wrapped);
-	}
+  public FailFastSQLXMLImpl(FailFastConnectionImpl failFastConnection, SQLXML wrapped) {
+    super(failFastConnection, wrapped);
+  }
 
-	@Override
-	protected FailFastConnectionImpl getConnectionWrapper() {
-		return (FailFastConnectionImpl)super.getConnectionWrapper();
-	}
+  @Override
+  protected FailFastConnectionImpl getConnectionWrapper() {
+    return (FailFastConnectionImpl)super.getConnectionWrapper();
+  }
 
-	@Override
-	public void free() throws SQLException {
-		try {
-			super.free();
-		} catch(Throwable t) {
-			getConnectionWrapper().addFailFastCause(t);
-			throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
-		}
-	}
+  @Override
+  public void free() throws SQLException {
+    try {
+      super.free();
+    } catch (Throwable t) {
+      getConnectionWrapper().addFailFastCause(t);
+      throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
+    }
+  }
 
-	@Override
-	public FailFastInputStream getBinaryStream() throws SQLException {
-		FailFastConnectionImpl ffConn = getConnectionWrapper();
-		ffConn.failFastSQLException();
-		try {
-			return (FailFastInputStream)super.getBinaryStream();
-		} catch(Throwable t) {
-			ffConn.addFailFastCause(t);
-			throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
-		}
-	}
+  @Override
+  public FailFastInputStream getBinaryStream() throws SQLException {
+    FailFastConnectionImpl ffConn = getConnectionWrapper();
+    ffConn.failFastSQLException();
+    try {
+      return (FailFastInputStream)super.getBinaryStream();
+    } catch (Throwable t) {
+      ffConn.addFailFastCause(t);
+      throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
+    }
+  }
 
-	@Override
-	public FailFastOutputStream setBinaryStream() throws SQLException {
-		FailFastConnectionImpl ffConn = getConnectionWrapper();
-		ffConn.failFastSQLException();
-		try {
-			return (FailFastOutputStream)super.setBinaryStream();
-		} catch(Throwable t) {
-			ffConn.addFailFastCause(t);
-			throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
-		}
-	}
+  @Override
+  public FailFastOutputStream setBinaryStream() throws SQLException {
+    FailFastConnectionImpl ffConn = getConnectionWrapper();
+    ffConn.failFastSQLException();
+    try {
+      return (FailFastOutputStream)super.setBinaryStream();
+    } catch (Throwable t) {
+      ffConn.addFailFastCause(t);
+      throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
+    }
+  }
 
-	@Override
-	public FailFastReader getCharacterStream() throws SQLException {
-		FailFastConnectionImpl ffConn = getConnectionWrapper();
-		ffConn.failFastSQLException();
-		try {
-			return (FailFastReader)super.getCharacterStream();
-		} catch(Throwable t) {
-			ffConn.addFailFastCause(t);
-			throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
-		}
-	}
+  @Override
+  public FailFastReader getCharacterStream() throws SQLException {
+    FailFastConnectionImpl ffConn = getConnectionWrapper();
+    ffConn.failFastSQLException();
+    try {
+      return (FailFastReader)super.getCharacterStream();
+    } catch (Throwable t) {
+      ffConn.addFailFastCause(t);
+      throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
+    }
+  }
 
-	@Override
-	public FailFastWriter setCharacterStream() throws SQLException {
-		FailFastConnectionImpl ffConn = getConnectionWrapper();
-		ffConn.failFastSQLException();
-		try {
-			return (FailFastWriter)super.setCharacterStream();
-		} catch(Throwable t) {
-			ffConn.addFailFastCause(t);
-			throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
-		}
-	}
+  @Override
+  public FailFastWriter setCharacterStream() throws SQLException {
+    FailFastConnectionImpl ffConn = getConnectionWrapper();
+    ffConn.failFastSQLException();
+    try {
+      return (FailFastWriter)super.setCharacterStream();
+    } catch (Throwable t) {
+      ffConn.addFailFastCause(t);
+      throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
+    }
+  }
 
-	@Override
-	public String getString() throws SQLException {
-		FailFastConnectionImpl ffConn = getConnectionWrapper();
-		ffConn.failFastSQLException();
-		try {
-			return super.getString();
-		} catch(Throwable t) {
-			ffConn.addFailFastCause(t);
-			throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
-		}
-	}
+  @Override
+  public String getString() throws SQLException {
+    FailFastConnectionImpl ffConn = getConnectionWrapper();
+    ffConn.failFastSQLException();
+    try {
+      return super.getString();
+    } catch (Throwable t) {
+      ffConn.addFailFastCause(t);
+      throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
+    }
+  }
 
-	@Override
-	public void setString(String value) throws SQLException {
-		FailFastConnectionImpl ffConn = getConnectionWrapper();
-		ffConn.failFastSQLException();
-		try {
-			super.setString(value);
-		} catch(Throwable t) {
-			ffConn.addFailFastCause(t);
-			throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
-		}
-	}
+  @Override
+  public void setString(String value) throws SQLException {
+    FailFastConnectionImpl ffConn = getConnectionWrapper();
+    ffConn.failFastSQLException();
+    try {
+      super.setString(value);
+    } catch (Throwable t) {
+      ffConn.addFailFastCause(t);
+      throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
+    }
+  }
 
-	@Override
-	public <T extends Source> T getSource(Class<T> sourceClass) throws SQLException {
-		FailFastConnectionImpl ffConn = getConnectionWrapper();
-		ffConn.failFastSQLException();
-		try {
-			return super.getSource(sourceClass);
-		} catch(Throwable t) {
-			ffConn.addFailFastCause(t);
-			throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
-		}
-	}
+  @Override
+  public <T extends Source> T getSource(Class<T> sourceClass) throws SQLException {
+    FailFastConnectionImpl ffConn = getConnectionWrapper();
+    ffConn.failFastSQLException();
+    try {
+      return super.getSource(sourceClass);
+    } catch (Throwable t) {
+      ffConn.addFailFastCause(t);
+      throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
+    }
+  }
 
-	@Override
-	public <T extends Result> T setResult(Class<T> resultClass) throws SQLException {
-		FailFastConnectionImpl ffConn = getConnectionWrapper();
-		ffConn.failFastSQLException();
-		try {
-			return super.setResult(resultClass);
-		} catch(Throwable t) {
-			ffConn.addFailFastCause(t);
-			throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
-		}
-	}
+  @Override
+  public <T extends Result> T setResult(Class<T> resultClass) throws SQLException {
+    FailFastConnectionImpl ffConn = getConnectionWrapper();
+    ffConn.failFastSQLException();
+    try {
+      return super.setResult(resultClass);
+    } catch (Throwable t) {
+      ffConn.addFailFastCause(t);
+      throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
+    }
+  }
 }

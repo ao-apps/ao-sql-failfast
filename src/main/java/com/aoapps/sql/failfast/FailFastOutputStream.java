@@ -36,70 +36,70 @@ import java.io.OutputStream;
 @SuppressWarnings({"UseSpecificCatch", "TooBroadCatch"})
 public class FailFastOutputStream extends OutputStreamWrapper {
 
-	public FailFastOutputStream(FailFastConnectionImpl failFastConnection, OutputStream wrapped) {
-		super(failFastConnection, wrapped);
-	}
+  public FailFastOutputStream(FailFastConnectionImpl failFastConnection, OutputStream wrapped) {
+    super(failFastConnection, wrapped);
+  }
 
-	@Override
-	protected FailFastConnectionImpl getConnectionWrapper() {
-		return (FailFastConnectionImpl)super.getConnectionWrapper();
-	}
+  @Override
+  protected FailFastConnectionImpl getConnectionWrapper() {
+    return (FailFastConnectionImpl)super.getConnectionWrapper();
+  }
 
-	@Override
-	public void write(int b) throws IOException {
-		FailFastConnectionImpl ffConn = getConnectionWrapper();
-		ffConn.failFastIOException();
-		try {
-			super.write(b);
-		} catch(Throwable t) {
-			ffConn.addFailFastCause(t);
-			throw Throwables.wrap(t, IOException.class, IOException::new);
-		}
-	}
+  @Override
+  public void write(int b) throws IOException {
+    FailFastConnectionImpl ffConn = getConnectionWrapper();
+    ffConn.failFastIOException();
+    try {
+      super.write(b);
+    } catch (Throwable t) {
+      ffConn.addFailFastCause(t);
+      throw Throwables.wrap(t, IOException.class, IOException::new);
+    }
+  }
 
-	@Override
-	public void write(byte[] b) throws IOException {
-		FailFastConnectionImpl ffConn = getConnectionWrapper();
-		ffConn.failFastIOException();
-		try {
-			super.write(b);
-		} catch(Throwable t) {
-			ffConn.addFailFastCause(t);
-			throw Throwables.wrap(t, IOException.class, IOException::new);
-		}
-	}
+  @Override
+  public void write(byte[] b) throws IOException {
+    FailFastConnectionImpl ffConn = getConnectionWrapper();
+    ffConn.failFastIOException();
+    try {
+      super.write(b);
+    } catch (Throwable t) {
+      ffConn.addFailFastCause(t);
+      throw Throwables.wrap(t, IOException.class, IOException::new);
+    }
+  }
 
-	@Override
-	public void write(byte[] b, int off, int len) throws IOException {
-		FailFastConnectionImpl ffConn = getConnectionWrapper();
-		ffConn.failFastIOException();
-		try {
-			super.write(b, off, len);
-		} catch(Throwable t) {
-			ffConn.addFailFastCause(t);
-			throw Throwables.wrap(t, IOException.class, IOException::new);
-		}
-	}
+  @Override
+  public void write(byte[] b, int off, int len) throws IOException {
+    FailFastConnectionImpl ffConn = getConnectionWrapper();
+    ffConn.failFastIOException();
+    try {
+      super.write(b, off, len);
+    } catch (Throwable t) {
+      ffConn.addFailFastCause(t);
+      throw Throwables.wrap(t, IOException.class, IOException::new);
+    }
+  }
 
-	@Override
-	public void flush() throws IOException {
-		FailFastConnectionImpl ffConn = getConnectionWrapper();
-		ffConn.failFastIOException();
-		try {
-			super.flush();
-		} catch(Throwable t) {
-			ffConn.addFailFastCause(t);
-			throw Throwables.wrap(t, IOException.class, IOException::new);
-		}
-	}
+  @Override
+  public void flush() throws IOException {
+    FailFastConnectionImpl ffConn = getConnectionWrapper();
+    ffConn.failFastIOException();
+    try {
+      super.flush();
+    } catch (Throwable t) {
+      ffConn.addFailFastCause(t);
+      throw Throwables.wrap(t, IOException.class, IOException::new);
+    }
+  }
 
-	@Override
-	public void close() throws IOException {
-		try {
-			super.close();
-		} catch(Throwable t) {
-			getConnectionWrapper().addFailFastCause(t);
-			throw Throwables.wrap(t, IOException.class, IOException::new);
-		}
-	}
+  @Override
+  public void close() throws IOException {
+    try {
+      super.close();
+    } catch (Throwable t) {
+      getConnectionWrapper().addFailFastCause(t);
+      throw Throwables.wrap(t, IOException.class, IOException::new);
+    }
+  }
 }

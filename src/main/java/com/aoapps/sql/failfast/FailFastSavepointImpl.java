@@ -36,32 +36,32 @@ import java.sql.Savepoint;
 @SuppressWarnings({"UseSpecificCatch", "TooBroadCatch"})
 public class FailFastSavepointImpl extends SavepointWrapperImpl {
 
-	public FailFastSavepointImpl(FailFastConnectionImpl failFastConnection, Savepoint wrapped) {
-		super(failFastConnection, wrapped);
-	}
+  public FailFastSavepointImpl(FailFastConnectionImpl failFastConnection, Savepoint wrapped) {
+    super(failFastConnection, wrapped);
+  }
 
-	@Override
-	protected FailFastConnectionImpl getConnectionWrapper() {
-		return (FailFastConnectionImpl)super.getConnectionWrapper();
-	}
+  @Override
+  protected FailFastConnectionImpl getConnectionWrapper() {
+    return (FailFastConnectionImpl)super.getConnectionWrapper();
+  }
 
-	@Override
-	public int getSavepointId() throws SQLException {
-		try {
-			return super.getSavepointId();
-		} catch(Throwable t) {
-			getConnectionWrapper().addFailFastCause(t);
-			throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
-		}
-	}
+  @Override
+  public int getSavepointId() throws SQLException {
+    try {
+      return super.getSavepointId();
+    } catch (Throwable t) {
+      getConnectionWrapper().addFailFastCause(t);
+      throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
+    }
+  }
 
-	@Override
-	public String getSavepointName() throws SQLException {
-		try {
-			return super.getSavepointName();
-		} catch(Throwable t) {
-			getConnectionWrapper().addFailFastCause(t);
-			throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
-		}
-	}
+  @Override
+  public String getSavepointName() throws SQLException {
+    try {
+      return super.getSavepointName();
+    } catch (Throwable t) {
+      getConnectionWrapper().addFailFastCause(t);
+      throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
+    }
+  }
 }

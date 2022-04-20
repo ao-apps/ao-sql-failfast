@@ -36,53 +36,53 @@ import java.sql.RowId;
 @SuppressWarnings({"UseSpecificCatch", "TooBroadCatch"})
 public class FailFastRowIdImpl extends RowIdWrapperImpl {
 
-	public FailFastRowIdImpl(FailFastConnectionImpl failFastConnection, RowId wrapped) {
-		super(failFastConnection, wrapped);
-	}
+  public FailFastRowIdImpl(FailFastConnectionImpl failFastConnection, RowId wrapped) {
+    super(failFastConnection, wrapped);
+  }
 
-	@Override
-	protected FailFastConnectionImpl getConnectionWrapper() {
-		return (FailFastConnectionImpl)super.getConnectionWrapper();
-	}
+  @Override
+  protected FailFastConnectionImpl getConnectionWrapper() {
+    return (FailFastConnectionImpl)super.getConnectionWrapper();
+  }
 
-	@Override
-	@SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
-	public boolean equals(Object obj) {
-		try {
-			return super.equals(obj);
-		} catch(Throwable t) {
-			getConnectionWrapper().addFailFastCause(t);
-			throw Throwables.wrap(t, WrappedException.class, WrappedException::new);
-		}
-	}
+  @Override
+  @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
+  public boolean equals(Object obj) {
+    try {
+      return super.equals(obj);
+    } catch (Throwable t) {
+      getConnectionWrapper().addFailFastCause(t);
+      throw Throwables.wrap(t, WrappedException.class, WrappedException::new);
+    }
+  }
 
-	@Override
-	public byte[] getBytes() {
-		try {
-			return super.getBytes();
-		} catch(Throwable t) {
-			getConnectionWrapper().addFailFastCause(t);
-			throw Throwables.wrap(t, WrappedException.class, WrappedException::new);
-		}
-	}
+  @Override
+  public byte[] getBytes() {
+    try {
+      return super.getBytes();
+    } catch (Throwable t) {
+      getConnectionWrapper().addFailFastCause(t);
+      throw Throwables.wrap(t, WrappedException.class, WrappedException::new);
+    }
+  }
 
-	@Override
-	public String toString() {
-		try {
-			return super.toString();
-		} catch(Throwable t) {
-			getConnectionWrapper().addFailFastCause(t);
-			throw Throwables.wrap(t, WrappedException.class, WrappedException::new);
-		}
-	}
+  @Override
+  public String toString() {
+    try {
+      return super.toString();
+    } catch (Throwable t) {
+      getConnectionWrapper().addFailFastCause(t);
+      throw Throwables.wrap(t, WrappedException.class, WrappedException::new);
+    }
+  }
 
-	@Override
-	public int hashCode() {
-		try {
-			return super.hashCode();
-		} catch(Throwable t) {
-			getConnectionWrapper().addFailFastCause(t);
-			throw Throwables.wrap(t, WrappedException.class, WrappedException::new);
-		}
-	}
+  @Override
+  public int hashCode() {
+    try {
+      return super.hashCode();
+    } catch (Throwable t) {
+      getConnectionWrapper().addFailFastCause(t);
+      throw Throwables.wrap(t, WrappedException.class, WrappedException::new);
+    }
+  }
 }

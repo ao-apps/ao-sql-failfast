@@ -32,41 +32,41 @@ package com.aoapps.sql.failfast;
  */
 public abstract class TerminalSQLException extends FailFastSQLException {
 
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	//public TerminalSQLException(String reason, String sqlState, int vendorCode) {
-	//	super(reason, sqlState, vendorCode);
-	//}
+  //public TerminalSQLException(String reason, String sqlState, int vendorCode) {
+  //  super(reason, sqlState, vendorCode);
+  //}
 
-	protected TerminalSQLException(String reason, String sqlState) {
-		super(reason, sqlState);
-	}
+  protected TerminalSQLException(String reason, String sqlState) {
+    super(reason, sqlState);
+  }
 
-	/**
-	 * @deprecated  Please provide SQLSTATE to {@link #TerminalSQLException(java.lang.String, java.lang.String)}
-	 */
-	@Deprecated(forRemoval = false)
-	protected TerminalSQLException(String reason) {
-		super(reason);
-	}
+  /**
+   * @deprecated  Please provide SQLSTATE to {@link #TerminalSQLException(java.lang.String, java.lang.String)}
+   */
+  @Deprecated(forRemoval = false)
+  protected TerminalSQLException(String reason) {
+    super(reason);
+  }
 
-	//protected TerminalSQLException() {
-	//	super();
-	//}
+  //protected TerminalSQLException() {
+  //  super();
+  //}
 
-	//protected TerminalSQLException(Throwable cause) {
-	//	super(cause);
-	//}
+  //protected TerminalSQLException(Throwable cause) {
+  //  super(cause);
+  //}
 
-	//protected TerminalSQLException(String reason, Throwable cause) {
-	//	super(reason, cause);
-	//}
+  //protected TerminalSQLException(String reason, Throwable cause) {
+  //  super(reason, cause);
+  //}
 
-	//protected TerminalSQLException(String reason, String sqlState, Throwable cause) {
-	//	super(reason, sqlState, cause);
-	//}
+  //protected TerminalSQLException(String reason, String sqlState, Throwable cause) {
+  //  super(reason, sqlState, cause);
+  //}
 
-	protected TerminalSQLException(String reason, String sqlState, int vendorCode, Throwable cause) {
-		super(reason, sqlState, vendorCode, cause);
-	}
+  protected TerminalSQLException(String reason, String sqlState, int vendorCode, Throwable cause) {
+    super(reason, sqlState, vendorCode, cause);
+  }
 }

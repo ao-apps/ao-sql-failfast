@@ -33,52 +33,52 @@ import java.sql.SQLException;
  */
 public class FailFastSQLException extends SQLException {
 
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	//public FailFastSQLException(String reason, String sqlState, int vendorCode) {
-	//	super(reason, sqlState, vendorCode);
-	//}
+  //public FailFastSQLException(String reason, String sqlState, int vendorCode) {
+  //  super(reason, sqlState, vendorCode);
+  //}
 
-	public FailFastSQLException(String reason, String sqlState) {
-		super(reason, sqlState);
-	}
+  public FailFastSQLException(String reason, String sqlState) {
+    super(reason, sqlState);
+  }
 
-	/**
-	 * @deprecated  Please provide SQLSTATE to {@link #FailFastSQLException(java.lang.String, java.lang.String)}
-	 */
-	@Deprecated(forRemoval = false)
-	public FailFastSQLException(String reason) {
-		super(reason, "25000");
-	}
+  /**
+   * @deprecated  Please provide SQLSTATE to {@link #FailFastSQLException(java.lang.String, java.lang.String)}
+   */
+  @Deprecated(forRemoval = false)
+  public FailFastSQLException(String reason) {
+    super(reason, "25000");
+  }
 
-	//public FailFastSQLException() {
-	//	super();
-	//}
+  //public FailFastSQLException() {
+  //  super();
+  //}
 
-	public FailFastSQLException(Throwable cause) {
-		super("In fail-fast connection state: clearFailFast, rollback, close, or abort required", "25000", cause);
-	}
+  public FailFastSQLException(Throwable cause) {
+    super("In fail-fast connection state: clearFailFast, rollback, close, or abort required", "25000", cause);
+  }
 
-	//public FailFastSQLException(String reason, Throwable cause) {
-	//	super(reason, cause);
-	//}
+  //public FailFastSQLException(String reason, Throwable cause) {
+  //  super(reason, cause);
+  //}
 
-	//public FailFastSQLException(String reason, String sqlState, Throwable cause) {
-	//	super(reason, sqlState, cause);
-	//}
+  //public FailFastSQLException(String reason, String sqlState, Throwable cause) {
+  //  super(reason, sqlState, cause);
+  //}
 
-	public FailFastSQLException(String reason, String sqlState, int vendorCode, Throwable cause) {
-		super(reason, sqlState, vendorCode, cause);
-	}
+  public FailFastSQLException(String reason, String sqlState, int vendorCode, Throwable cause) {
+    super(reason, sqlState, vendorCode, cause);
+  }
 
-	static {
-		Throwables.registerSurrogateFactory(FailFastSQLException.class, (template, cause) ->
-			new FailFastSQLException(
-				template.getMessage(),
-				template.getSQLState(),
-				template.getErrorCode(),
-				cause
-			)
-		);
-	}
+  static {
+    Throwables.registerSurrogateFactory(FailFastSQLException.class, (template, cause) ->
+      new FailFastSQLException(
+        template.getMessage(),
+        template.getSQLState(),
+        template.getErrorCode(),
+        cause
+      )
+    );
+  }
 }
