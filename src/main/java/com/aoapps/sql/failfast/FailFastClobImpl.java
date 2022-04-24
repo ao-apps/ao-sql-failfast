@@ -42,7 +42,7 @@ public class FailFastClobImpl extends ClobWrapperImpl {
 
   @Override
   protected FailFastConnectionImpl getConnectionWrapper() {
-    return (FailFastConnectionImpl)super.getConnectionWrapper();
+    return (FailFastConnectionImpl) super.getConnectionWrapper();
   }
 
   @Override
@@ -74,7 +74,7 @@ public class FailFastClobImpl extends ClobWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastReader)super.getCharacterStream();
+      return (FailFastReader) super.getCharacterStream();
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -86,7 +86,7 @@ public class FailFastClobImpl extends ClobWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastInputStream)super.getAsciiStream();
+      return (FailFastInputStream) super.getAsciiStream();
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -146,7 +146,7 @@ public class FailFastClobImpl extends ClobWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastOutputStream)super.setAsciiStream(pos);
+      return (FailFastOutputStream) super.setAsciiStream(pos);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -158,7 +158,7 @@ public class FailFastClobImpl extends ClobWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastWriter)super.setCharacterStream(pos);
+      return (FailFastWriter) super.setCharacterStream(pos);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -192,7 +192,7 @@ public class FailFastClobImpl extends ClobWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastReader)super.getCharacterStream(pos, length);
+      return (FailFastReader) super.getCharacterStream(pos, length);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);

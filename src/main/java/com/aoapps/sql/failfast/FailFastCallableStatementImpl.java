@@ -60,7 +60,7 @@ public class FailFastCallableStatementImpl extends CallableStatementWrapperImpl 
 
   @Override
   protected FailFastConnectionImpl getConnectionWrapper() {
-    return (FailFastConnectionImpl)super.getConnectionWrapper();
+    return (FailFastConnectionImpl) super.getConnectionWrapper();
   }
 
   /*
@@ -72,7 +72,7 @@ public class FailFastCallableStatementImpl extends CallableStatementWrapperImpl 
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetImpl)super.executeQuery(sql);
+      return (FailFastResultSetImpl) super.executeQuery(sql);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -248,7 +248,7 @@ public class FailFastCallableStatementImpl extends CallableStatementWrapperImpl 
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetImpl)super.getResultSet();
+      return (FailFastResultSetImpl) super.getResultSet();
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -388,7 +388,7 @@ public class FailFastCallableStatementImpl extends CallableStatementWrapperImpl 
   @Override
   public FailFastConnectionImpl getConnection() throws SQLException {
     try {
-      return (FailFastConnectionImpl)super.getConnection();
+      return (FailFastConnectionImpl) super.getConnection();
     } catch (Throwable t) {
       getConnectionWrapper().addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -412,7 +412,7 @@ public class FailFastCallableStatementImpl extends CallableStatementWrapperImpl 
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetImpl)super.getGeneratedKeys();
+      return (FailFastResultSetImpl) super.getGeneratedKeys();
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -714,7 +714,7 @@ public class FailFastCallableStatementImpl extends CallableStatementWrapperImpl 
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetImpl)super.executeQuery();
+      return (FailFastResultSetImpl) super.executeQuery();
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -914,7 +914,7 @@ public class FailFastCallableStatementImpl extends CallableStatementWrapperImpl 
   }
 
   @Override
-  @Deprecated(since="1.2")
+  @Deprecated(since = "1.2")
   public void setUnicodeStream(int parameterIndex, InputStream x, int length) throws SQLException {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
@@ -1061,7 +1061,7 @@ public class FailFastCallableStatementImpl extends CallableStatementWrapperImpl 
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetMetaDataImpl)super.getMetaData();
+      return (FailFastResultSetMetaDataImpl) super.getMetaData();
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1105,7 +1105,7 @@ public class FailFastCallableStatementImpl extends CallableStatementWrapperImpl 
   }
 
   @Override
-  public void setNull (int parameterIndex, int sqlType, String typeName) throws SQLException {
+  public void setNull(int parameterIndex, int sqlType, String typeName) throws SQLException {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
@@ -1133,7 +1133,7 @@ public class FailFastCallableStatementImpl extends CallableStatementWrapperImpl 
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastParameterMetaDataImpl)super.getParameterMetaData();
+      return (FailFastParameterMetaDataImpl) super.getParameterMetaData();
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1541,7 +1541,7 @@ public class FailFastCallableStatementImpl extends CallableStatementWrapperImpl 
   }
 
   @Override
-  @Deprecated(since="1.2")
+  @Deprecated(since = "1.2")
   public BigDecimal getBigDecimal(int parameterIndex, int scale) throws SQLException {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
@@ -1642,7 +1642,7 @@ public class FailFastCallableStatementImpl extends CallableStatementWrapperImpl 
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastRefImpl)super.getRef(parameterIndex);
+      return (FailFastRefImpl) super.getRef(parameterIndex);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1654,7 +1654,7 @@ public class FailFastCallableStatementImpl extends CallableStatementWrapperImpl 
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastBlobImpl)super.getBlob(parameterIndex);
+      return (FailFastBlobImpl) super.getBlob(parameterIndex);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1666,7 +1666,7 @@ public class FailFastCallableStatementImpl extends CallableStatementWrapperImpl 
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastClobImpl)super.getClob(parameterIndex);
+      return (FailFastClobImpl) super.getClob(parameterIndex);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1678,7 +1678,7 @@ public class FailFastCallableStatementImpl extends CallableStatementWrapperImpl 
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastArrayImpl)super.getArray(parameterIndex);
+      return (FailFastArrayImpl) super.getArray(parameterIndex);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -2266,7 +2266,7 @@ public class FailFastCallableStatementImpl extends CallableStatementWrapperImpl 
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastRefImpl)super.getRef(parameterName);
+      return (FailFastRefImpl) super.getRef(parameterName);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -2278,7 +2278,7 @@ public class FailFastCallableStatementImpl extends CallableStatementWrapperImpl 
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastBlobImpl)super.getBlob(parameterName);
+      return (FailFastBlobImpl) super.getBlob(parameterName);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -2290,7 +2290,7 @@ public class FailFastCallableStatementImpl extends CallableStatementWrapperImpl 
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastClobImpl)super.getClob(parameterName);
+      return (FailFastClobImpl) super.getClob(parameterName);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -2302,7 +2302,7 @@ public class FailFastCallableStatementImpl extends CallableStatementWrapperImpl 
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastArrayImpl)super.getArray(parameterName);
+      return (FailFastArrayImpl) super.getArray(parameterName);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -2362,7 +2362,7 @@ public class FailFastCallableStatementImpl extends CallableStatementWrapperImpl 
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastRowIdImpl)super.getRowId(parameterIndex);
+      return (FailFastRowIdImpl) super.getRowId(parameterIndex);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -2374,7 +2374,7 @@ public class FailFastCallableStatementImpl extends CallableStatementWrapperImpl 
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastRowIdImpl)super.getRowId(parameterName);
+      return (FailFastRowIdImpl) super.getRowId(parameterName);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -2470,7 +2470,7 @@ public class FailFastCallableStatementImpl extends CallableStatementWrapperImpl 
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastNClobImpl)super.getNClob(parameterIndex);
+      return (FailFastNClobImpl) super.getNClob(parameterIndex);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -2482,7 +2482,7 @@ public class FailFastCallableStatementImpl extends CallableStatementWrapperImpl 
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastNClobImpl)super.getNClob(parameterName);
+      return (FailFastNClobImpl) super.getNClob(parameterName);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -2506,7 +2506,7 @@ public class FailFastCallableStatementImpl extends CallableStatementWrapperImpl 
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastSQLXMLImpl)super.getSQLXML(parameterIndex);
+      return (FailFastSQLXMLImpl) super.getSQLXML(parameterIndex);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -2518,7 +2518,7 @@ public class FailFastCallableStatementImpl extends CallableStatementWrapperImpl 
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastSQLXMLImpl)super.getSQLXML(parameterName);
+      return (FailFastSQLXMLImpl) super.getSQLXML(parameterName);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -2554,7 +2554,7 @@ public class FailFastCallableStatementImpl extends CallableStatementWrapperImpl 
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastReader)super.getNCharacterStream(parameterIndex);
+      return (FailFastReader) super.getNCharacterStream(parameterIndex);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -2566,7 +2566,7 @@ public class FailFastCallableStatementImpl extends CallableStatementWrapperImpl 
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastReader)super.getNCharacterStream(parameterName);
+      return (FailFastReader) super.getNCharacterStream(parameterName);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -2578,7 +2578,7 @@ public class FailFastCallableStatementImpl extends CallableStatementWrapperImpl 
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastReader)super.getCharacterStream(parameterIndex);
+      return (FailFastReader) super.getCharacterStream(parameterIndex);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -2590,7 +2590,7 @@ public class FailFastCallableStatementImpl extends CallableStatementWrapperImpl 
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastReader)super.getCharacterStream(parameterName);
+      return (FailFastReader) super.getCharacterStream(parameterName);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);

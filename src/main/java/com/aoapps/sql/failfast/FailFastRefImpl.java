@@ -43,7 +43,7 @@ public class FailFastRefImpl extends RefWrapperImpl {
 
   @Override
   protected FailFastConnectionImpl getConnectionWrapper() {
-    return (FailFastConnectionImpl)super.getConnectionWrapper();
+    return (FailFastConnectionImpl) super.getConnectionWrapper();
   }
 
   @Override

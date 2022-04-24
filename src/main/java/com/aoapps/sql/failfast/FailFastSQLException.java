@@ -73,12 +73,12 @@ public class FailFastSQLException extends SQLException {
 
   static {
     Throwables.registerSurrogateFactory(FailFastSQLException.class, (template, cause) ->
-      new FailFastSQLException(
-        template.getMessage(),
-        template.getSQLState(),
-        template.getErrorCode(),
-        cause
-      )
+        new FailFastSQLException(
+            template.getMessage(),
+            template.getSQLState(),
+            template.getErrorCode(),
+            cause
+        )
     );
   }
 }

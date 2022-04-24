@@ -42,7 +42,7 @@ public class FailFastRowIdImpl extends RowIdWrapperImpl {
 
   @Override
   protected FailFastConnectionImpl getConnectionWrapper() {
-    return (FailFastConnectionImpl)super.getConnectionWrapper();
+    return (FailFastConnectionImpl) super.getConnectionWrapper();
   }
 
   @Override

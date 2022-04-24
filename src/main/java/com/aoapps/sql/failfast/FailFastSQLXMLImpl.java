@@ -44,7 +44,7 @@ public class FailFastSQLXMLImpl extends SQLXMLWrapperImpl {
 
   @Override
   protected FailFastConnectionImpl getConnectionWrapper() {
-    return (FailFastConnectionImpl)super.getConnectionWrapper();
+    return (FailFastConnectionImpl) super.getConnectionWrapper();
   }
 
   @Override
@@ -62,7 +62,7 @@ public class FailFastSQLXMLImpl extends SQLXMLWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastInputStream)super.getBinaryStream();
+      return (FailFastInputStream) super.getBinaryStream();
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -74,7 +74,7 @@ public class FailFastSQLXMLImpl extends SQLXMLWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastOutputStream)super.setBinaryStream();
+      return (FailFastOutputStream) super.setBinaryStream();
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -86,7 +86,7 @@ public class FailFastSQLXMLImpl extends SQLXMLWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastReader)super.getCharacterStream();
+      return (FailFastReader) super.getCharacterStream();
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -98,7 +98,7 @@ public class FailFastSQLXMLImpl extends SQLXMLWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastWriter)super.setCharacterStream();
+      return (FailFastWriter) super.setCharacterStream();
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);

@@ -73,7 +73,9 @@ import java.util.function.Supplier;
 @SuppressWarnings({"UseSpecificCatch", "TooBroadCatch"})
 public class FailFastConnectionImpl extends ConnectionWrapperImpl implements FailFastConnection {
 
-  private static class FailFastLock {/* Empty lock class to help heap profile */}
+  private static class FailFastLock {
+    // Empty lock class to help heap profile
+  }
   private final FailFastLock failFastLock = new FailFastLock();
 
   /**
@@ -95,18 +97,18 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
   public void addFailFastCause(Throwable cause) {
     if (cause != null) {
       if (
-        cause == ClosedSQLException.FAST_MARKER_KEEP_PRIVATE
-        || cause == AbortedSQLException.FAST_MARKER_KEEP_PRIVATE
+          cause == ClosedSQLException.FAST_MARKER_KEEP_PRIVATE
+              || cause == AbortedSQLException.FAST_MARKER_KEEP_PRIVATE
       ) {
         throw new IllegalArgumentException("Private markers must be set directly without merge");
       }
       synchronized (failFastLock) {
         if (
-          // Don't merge if already in terminal fail-fast state
-          failFastCause != ClosedSQLException.FAST_MARKER_KEEP_PRIVATE
-          && failFastCause != AbortedSQLException.FAST_MARKER_KEEP_PRIVATE
-          // Don't replace if is same
-          && cause != failFastCause
+            // Don't merge if already in terminal fail-fast state
+            failFastCause != ClosedSQLException.FAST_MARKER_KEEP_PRIVATE
+                && failFastCause != AbortedSQLException.FAST_MARKER_KEEP_PRIVATE
+                // Don't replace if is same
+                && cause != failFastCause
         ) {
           if (failFastCause == null) {
             failFastCause = cause;
@@ -182,7 +184,7 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
       }
       // Include cause for all other
       if (cause instanceof SQLException) {
-        SQLException template = (SQLException)cause;
+        SQLException template = (SQLException) cause;
         SQLException surrogate = Throwables.newSurrogate(template);
         if (surrogate != template) {
           // Was wrapped, return the new exception of the same type as the cause
@@ -190,10 +192,10 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
         } else {
           // Was a type that has no surrogate registered
           throw new FailFastSQLException(
-            template.getMessage(),
-            template.getSQLState(),
-            template.getErrorCode(),
-            cause
+              template.getMessage(),
+              template.getSQLState(),
+              template.getErrorCode(),
+              cause
           );
         }
       } else {
@@ -218,13 +220,13 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
       // Include cause for all other
       Map<String, ClientInfoStatus> failedProperties = failedPropertiesSupplier.get();
       if (cause instanceof SQLException) {
-        SQLException sqlEx = (SQLException)cause;
+        SQLException sqlEx = (SQLException) cause;
         throw new SQLClientInfoException(
-          sqlEx.getMessage(),
-          sqlEx.getSQLState(),
-          sqlEx.getErrorCode(),
-          failedProperties,
-          cause
+            sqlEx.getMessage(),
+            sqlEx.getSQLState(),
+            sqlEx.getErrorCode(),
+            failedProperties,
+            cause
         );
       } else {
         throw new SQLClientInfoException(failedProperties, cause);
@@ -249,7 +251,7 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
       }
       // Include cause for all other
       if (cause instanceof IOException) {
-        throw Throwables.newSurrogate((IOException)cause);
+        throw Throwables.newSurrogate((IOException) cause);
       } else {
         throw new IOException(cause);
       }
@@ -376,7 +378,7 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
   public FailFastStatementImpl createStatement() throws SQLException {
     failFastSQLException();
     try {
-      return (FailFastStatementImpl)super.createStatement();
+      return (FailFastStatementImpl) super.createStatement();
     } catch (Throwable t) {
       addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -387,7 +389,7 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
   public FailFastPreparedStatementImpl prepareStatement(String sql) throws SQLException {
     failFastSQLException();
     try {
-      return (FailFastPreparedStatementImpl)super.prepareStatement(sql);
+      return (FailFastPreparedStatementImpl) super.prepareStatement(sql);
     } catch (Throwable t) {
       addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -398,7 +400,7 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
   public FailFastCallableStatementImpl prepareCall(String sql) throws SQLException {
     failFastSQLException();
     try {
-      return (FailFastCallableStatementImpl)super.prepareCall(sql);
+      return (FailFastCallableStatementImpl) super.prepareCall(sql);
     } catch (Throwable t) {
       addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -493,8 +495,8 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
     synchronized (failFastLock) {
       cause = failFastCause;
       if (
-        cause != ClosedSQLException.FAST_MARKER_KEEP_PRIVATE
-        && cause != AbortedSQLException.FAST_MARKER_KEEP_PRIVATE
+          cause != ClosedSQLException.FAST_MARKER_KEEP_PRIVATE
+              && cause != AbortedSQLException.FAST_MARKER_KEEP_PRIVATE
       ) {
         failFastCause = ClosedSQLException.FAST_MARKER_KEEP_PRIVATE;
         doClose = true;
@@ -511,8 +513,8 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
   public boolean isClosed() throws SQLException {
     Throwable cause = failFastCause;
     if (
-      cause == ClosedSQLException.FAST_MARKER_KEEP_PRIVATE
-      || cause == AbortedSQLException.FAST_MARKER_KEEP_PRIVATE
+        cause == ClosedSQLException.FAST_MARKER_KEEP_PRIVATE
+            || cause == AbortedSQLException.FAST_MARKER_KEEP_PRIVATE
     ) {
       return true;
     }
@@ -528,7 +530,7 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
   public FailFastDatabaseMetaDataImpl getMetaData() throws SQLException {
     failFastSQLException();
     try {
-      return (FailFastDatabaseMetaDataImpl)super.getMetaData();
+      return (FailFastDatabaseMetaDataImpl) super.getMetaData();
     } catch (Throwable t) {
       addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -627,7 +629,7 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
   public FailFastStatementImpl createStatement(int resultSetType, int resultSetConcurrency) throws SQLException {
     failFastSQLException();
     try {
-      return (FailFastStatementImpl)super.createStatement(resultSetType, resultSetConcurrency);
+      return (FailFastStatementImpl) super.createStatement(resultSetType, resultSetConcurrency);
     } catch (Throwable t) {
       addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -638,7 +640,7 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
   public FailFastPreparedStatementImpl prepareStatement(String sql, int resultSetType, int resultSetConcurrency) throws SQLException {
     failFastSQLException();
     try {
-      return (FailFastPreparedStatementImpl)super.prepareStatement(sql, resultSetType, resultSetConcurrency);
+      return (FailFastPreparedStatementImpl) super.prepareStatement(sql, resultSetType, resultSetConcurrency);
     } catch (Throwable t) {
       addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -649,7 +651,7 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
   public FailFastCallableStatementImpl prepareCall(String sql, int resultSetType, int resultSetConcurrency) throws SQLException {
     failFastSQLException();
     try {
-      return (FailFastCallableStatementImpl)super.prepareCall(sql, resultSetType, resultSetConcurrency);
+      return (FailFastCallableStatementImpl) super.prepareCall(sql, resultSetType, resultSetConcurrency);
     } catch (Throwable t) {
       addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -704,7 +706,7 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
   public FailFastSavepointImpl setSavepoint() throws SQLException {
     failFastSQLException();
     try {
-      return (FailFastSavepointImpl)super.setSavepoint();
+      return (FailFastSavepointImpl) super.setSavepoint();
     } catch (Throwable t) {
       addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -715,7 +717,7 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
   public FailFastSavepointImpl setSavepoint(String name) throws SQLException {
     failFastSQLException();
     try {
-      return (FailFastSavepointImpl)super.setSavepoint(name);
+      return (FailFastSavepointImpl) super.setSavepoint(name);
     } catch (Throwable t) {
       addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -766,7 +768,7 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
   public FailFastStatementImpl createStatement(int resultSetType, int resultSetConcurrency, int resultSetHoldability) throws SQLException {
     failFastSQLException();
     try {
-      return (FailFastStatementImpl)super.createStatement(resultSetType, resultSetConcurrency, resultSetHoldability);
+      return (FailFastStatementImpl) super.createStatement(resultSetType, resultSetConcurrency, resultSetHoldability);
     } catch (Throwable t) {
       addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -777,7 +779,7 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
   public FailFastPreparedStatementImpl prepareStatement(String sql, int resultSetType, int resultSetConcurrency, int resultSetHoldability) throws SQLException {
     failFastSQLException();
     try {
-      return (FailFastPreparedStatementImpl)super.prepareStatement(sql, resultSetType, resultSetConcurrency, resultSetHoldability);
+      return (FailFastPreparedStatementImpl) super.prepareStatement(sql, resultSetType, resultSetConcurrency, resultSetHoldability);
     } catch (Throwable t) {
       addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -788,7 +790,7 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
   public FailFastCallableStatementImpl prepareCall(String sql, int resultSetType, int resultSetConcurrency, int resultSetHoldability) throws SQLException {
     failFastSQLException();
     try {
-      return (FailFastCallableStatementImpl)super.prepareCall(sql, resultSetType, resultSetConcurrency, resultSetHoldability);
+      return (FailFastCallableStatementImpl) super.prepareCall(sql, resultSetType, resultSetConcurrency, resultSetHoldability);
     } catch (Throwable t) {
       addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -799,7 +801,7 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
   public FailFastPreparedStatementImpl prepareStatement(String sql, int autoGeneratedKeys) throws SQLException {
     failFastSQLException();
     try {
-      return (FailFastPreparedStatementImpl)super.prepareStatement(sql, autoGeneratedKeys);
+      return (FailFastPreparedStatementImpl) super.prepareStatement(sql, autoGeneratedKeys);
     } catch (Throwable t) {
       addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -810,7 +812,7 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
   public FailFastPreparedStatementImpl prepareStatement(String sql, int[] columnIndexes) throws SQLException {
     failFastSQLException();
     try {
-      return (FailFastPreparedStatementImpl)super.prepareStatement(sql, columnIndexes);
+      return (FailFastPreparedStatementImpl) super.prepareStatement(sql, columnIndexes);
     } catch (Throwable t) {
       addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -821,7 +823,7 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
   public FailFastPreparedStatementImpl prepareStatement(String sql, String[] columnNames) throws SQLException {
     failFastSQLException();
     try {
-      return (FailFastPreparedStatementImpl)super.prepareStatement(sql, columnNames);
+      return (FailFastPreparedStatementImpl) super.prepareStatement(sql, columnNames);
     } catch (Throwable t) {
       addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -832,7 +834,7 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
   public FailFastClobImpl createClob() throws SQLException {
     failFastSQLException();
     try {
-      return (FailFastClobImpl)super.createClob();
+      return (FailFastClobImpl) super.createClob();
     } catch (Throwable t) {
       addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -843,7 +845,7 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
   public FailFastBlobImpl createBlob() throws SQLException {
     failFastSQLException();
     try {
-      return (FailFastBlobImpl)super.createBlob();
+      return (FailFastBlobImpl) super.createBlob();
     } catch (Throwable t) {
       addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -854,7 +856,7 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
   public FailFastNClobImpl createNClob() throws SQLException {
     failFastSQLException();
     try {
-      return (FailFastNClobImpl)super.createNClob();
+      return (FailFastNClobImpl) super.createNClob();
     } catch (Throwable t) {
       addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -865,7 +867,7 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
   public FailFastSQLXMLImpl createSQLXML() throws SQLException {
     failFastSQLException();
     try {
-      return (FailFastSQLXMLImpl)super.createSQLXML();
+      return (FailFastSQLXMLImpl) super.createSQLXML();
     } catch (Throwable t) {
       addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -876,8 +878,8 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
   public boolean isValid(int timeout) throws SQLException {
     Throwable cause = failFastCause;
     if (
-      cause == ClosedSQLException.FAST_MARKER_KEEP_PRIVATE
-      || cause == AbortedSQLException.FAST_MARKER_KEEP_PRIVATE
+        cause == ClosedSQLException.FAST_MARKER_KEEP_PRIVATE
+            || cause == AbortedSQLException.FAST_MARKER_KEEP_PRIVATE
     ) {
       return false;
     }
@@ -897,12 +899,12 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
     } catch (Throwable t) {
       addFailFastCause(t);
       throw Throwables.wrap(
-        t,
-        SQLClientInfoException.class,
-        cause -> new SQLClientInfoException(
-          Collections.singletonMap(name, ClientInfoStatus.REASON_UNKNOWN),
-          cause
-        )
+          t,
+          SQLClientInfoException.class,
+          cause -> new SQLClientInfoException(
+              Collections.singletonMap(name, ClientInfoStatus.REASON_UNKNOWN),
+              cause
+          )
       );
     }
   }
@@ -911,7 +913,7 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
     Map<String, ClientInfoStatus> map = AoCollections.newHashMap(props.size());
     for (Object key : props.keySet()) {
       if (key instanceof String) {
-        map.put((String)key, ClientInfoStatus.REASON_UNKNOWN);
+        map.put((String) key, ClientInfoStatus.REASON_UNKNOWN);
       }
     }
     return map;
@@ -925,12 +927,12 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
     } catch (Throwable t) {
       addFailFastCause(t);
       throw Throwables.wrap(
-        t,
-        SQLClientInfoException.class,
-        cause -> new SQLClientInfoException(
-          toClientInfoMap(properties),
-          cause
-        )
+          t,
+          SQLClientInfoException.class,
+          cause -> new SQLClientInfoException(
+              toClientInfoMap(properties),
+              cause
+          )
       );
     }
   }
@@ -961,7 +963,7 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
   public FailFastArrayImpl createArrayOf(String typeName, Object[] elements) throws SQLException {
     failFastSQLException();
     try {
-      return (FailFastArrayImpl)super.createArrayOf(typeName, elements);
+      return (FailFastArrayImpl) super.createArrayOf(typeName, elements);
     } catch (Throwable t) {
       addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -972,7 +974,7 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
   public FailFastStructImpl createStruct(String typeName, Object[] attributes) throws SQLException {
     failFastSQLException();
     try {
-      return (FailFastStructImpl)super.createStruct(typeName, attributes);
+      return (FailFastStructImpl) super.createStruct(typeName, attributes);
     } catch (Throwable t) {
       addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1030,8 +1032,8 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
     synchronized (failFastLock) {
       cause = failFastCause;
       if (
-        cause != ClosedSQLException.FAST_MARKER_KEEP_PRIVATE
-        && cause != AbortedSQLException.FAST_MARKER_KEEP_PRIVATE
+          cause != ClosedSQLException.FAST_MARKER_KEEP_PRIVATE
+              && cause != AbortedSQLException.FAST_MARKER_KEEP_PRIVATE
       ) {
         failFastCause = AbortedSQLException.FAST_MARKER_KEEP_PRIVATE;
         doAbort = true;

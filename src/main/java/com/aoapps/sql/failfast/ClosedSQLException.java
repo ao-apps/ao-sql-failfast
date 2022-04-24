@@ -43,6 +43,7 @@ public class ClosedSQLException extends TerminalSQLException {
    * thrown without a cause.
    */
   static final ClosedSQLException FAST_MARKER_KEEP_PRIVATE = new ClosedSQLException();
+
   static {
     FAST_MARKER_KEEP_PRIVATE.setStackTrace(new StackTraceElement[0]);
   }
@@ -93,13 +94,13 @@ public class ClosedSQLException extends TerminalSQLException {
 
   static {
     Throwables.registerSurrogateFactory(ClosedSQLException.class, (template, cause) ->
-      (cause == ClosedSQLException.FAST_MARKER_KEEP_PRIVATE)
-        ? new ClosedSQLException()
-        : new ClosedSQLException(
-          template.getMessage(),
-          template.getSQLState(),
-          template.getErrorCode(),
-          cause
+        (cause == ClosedSQLException.FAST_MARKER_KEEP_PRIVATE)
+            ? new ClosedSQLException()
+            : new ClosedSQLException(
+            template.getMessage(),
+            template.getSQLState(),
+            template.getErrorCode(),
+            cause
         )
     );
   }

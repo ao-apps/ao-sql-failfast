@@ -43,6 +43,7 @@ public class AbortedSQLException extends TerminalSQLException {
    * thrown without a cause.
    */
   static final AbortedSQLException FAST_MARKER_KEEP_PRIVATE = new AbortedSQLException();
+
   static {
     FAST_MARKER_KEEP_PRIVATE.setStackTrace(new StackTraceElement[0]);
   }
@@ -93,13 +94,13 @@ public class AbortedSQLException extends TerminalSQLException {
 
   static {
     Throwables.registerSurrogateFactory(AbortedSQLException.class, (template, cause) ->
-      (cause == AbortedSQLException.FAST_MARKER_KEEP_PRIVATE)
-        ? new AbortedSQLException()
-        : new AbortedSQLException(
-          template.getMessage(),
-          template.getSQLState(),
-          template.getErrorCode(),
-          cause
+        (cause == AbortedSQLException.FAST_MARKER_KEEP_PRIVATE)
+            ? new AbortedSQLException()
+            : new AbortedSQLException(
+            template.getMessage(),
+            template.getSQLState(),
+            template.getErrorCode(),
+            cause
         )
     );
   }

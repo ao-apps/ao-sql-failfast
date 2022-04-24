@@ -44,7 +44,7 @@ public class FailFastDatabaseMetaDataImpl extends DatabaseMetaDataWrapperImpl {
 
   @Override
   protected FailFastConnectionImpl getConnectionWrapper() {
-    return (FailFastConnectionImpl)super.getConnectionWrapper();
+    return (FailFastConnectionImpl) super.getConnectionWrapper();
   }
 
   @Override
@@ -1464,7 +1464,7 @@ public class FailFastDatabaseMetaDataImpl extends DatabaseMetaDataWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetImpl)super.getProcedures(catalog, schemaPattern, procedureNamePattern);
+      return (FailFastResultSetImpl) super.getProcedures(catalog, schemaPattern, procedureNamePattern);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1476,7 +1476,7 @@ public class FailFastDatabaseMetaDataImpl extends DatabaseMetaDataWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetImpl)super.getProcedureColumns(catalog, schemaPattern, procedureNamePattern, columnNamePattern);
+      return (FailFastResultSetImpl) super.getProcedureColumns(catalog, schemaPattern, procedureNamePattern, columnNamePattern);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1488,7 +1488,7 @@ public class FailFastDatabaseMetaDataImpl extends DatabaseMetaDataWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetImpl)super.getTables(catalog, schemaPattern, tableNamePattern, types);
+      return (FailFastResultSetImpl) super.getTables(catalog, schemaPattern, tableNamePattern, types);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1500,7 +1500,7 @@ public class FailFastDatabaseMetaDataImpl extends DatabaseMetaDataWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetImpl)super.getSchemas();
+      return (FailFastResultSetImpl) super.getSchemas();
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1512,7 +1512,7 @@ public class FailFastDatabaseMetaDataImpl extends DatabaseMetaDataWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetImpl)super.getCatalogs();
+      return (FailFastResultSetImpl) super.getCatalogs();
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1524,7 +1524,7 @@ public class FailFastDatabaseMetaDataImpl extends DatabaseMetaDataWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetImpl)super.getTableTypes();
+      return (FailFastResultSetImpl) super.getTableTypes();
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1536,7 +1536,7 @@ public class FailFastDatabaseMetaDataImpl extends DatabaseMetaDataWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetImpl)super.getColumns(catalog, schemaPattern, tableNamePattern, columnNamePattern);
+      return (FailFastResultSetImpl) super.getColumns(catalog, schemaPattern, tableNamePattern, columnNamePattern);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1548,7 +1548,7 @@ public class FailFastDatabaseMetaDataImpl extends DatabaseMetaDataWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetImpl)super.getColumnPrivileges(catalog, schema, table, columnNamePattern);
+      return (FailFastResultSetImpl) super.getColumnPrivileges(catalog, schema, table, columnNamePattern);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1560,7 +1560,7 @@ public class FailFastDatabaseMetaDataImpl extends DatabaseMetaDataWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetImpl)super.getTablePrivileges(catalog, schemaPattern, tableNamePattern);
+      return (FailFastResultSetImpl) super.getTablePrivileges(catalog, schemaPattern, tableNamePattern);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1572,7 +1572,7 @@ public class FailFastDatabaseMetaDataImpl extends DatabaseMetaDataWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetImpl)super.getBestRowIdentifier(catalog, schema, table, scope, nullable);
+      return (FailFastResultSetImpl) super.getBestRowIdentifier(catalog, schema, table, scope, nullable);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1584,7 +1584,7 @@ public class FailFastDatabaseMetaDataImpl extends DatabaseMetaDataWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetImpl)super.getVersionColumns(catalog, schema, table);
+      return (FailFastResultSetImpl) super.getVersionColumns(catalog, schema, table);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1596,7 +1596,7 @@ public class FailFastDatabaseMetaDataImpl extends DatabaseMetaDataWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetImpl)super.getPrimaryKeys(catalog, schema, table);
+      return (FailFastResultSetImpl) super.getPrimaryKeys(catalog, schema, table);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1608,7 +1608,7 @@ public class FailFastDatabaseMetaDataImpl extends DatabaseMetaDataWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetImpl)super.getImportedKeys(catalog, schema, table);
+      return (FailFastResultSetImpl) super.getImportedKeys(catalog, schema, table);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1620,7 +1620,7 @@ public class FailFastDatabaseMetaDataImpl extends DatabaseMetaDataWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetImpl)super.getExportedKeys(catalog, schema, table);
+      return (FailFastResultSetImpl) super.getExportedKeys(catalog, schema, table);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1632,7 +1632,7 @@ public class FailFastDatabaseMetaDataImpl extends DatabaseMetaDataWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetImpl)super.getCrossReference(parentCatalog, parentSchema, parentTable, foreignCatalog, foreignSchema, foreignTable);
+      return (FailFastResultSetImpl) super.getCrossReference(parentCatalog, parentSchema, parentTable, foreignCatalog, foreignSchema, foreignTable);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1644,7 +1644,7 @@ public class FailFastDatabaseMetaDataImpl extends DatabaseMetaDataWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetImpl)super.getTypeInfo();
+      return (FailFastResultSetImpl) super.getTypeInfo();
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1656,7 +1656,7 @@ public class FailFastDatabaseMetaDataImpl extends DatabaseMetaDataWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetImpl)super.getIndexInfo(catalog, schema, table, unique, approximate);
+      return (FailFastResultSetImpl) super.getIndexInfo(catalog, schema, table, unique, approximate);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1812,7 +1812,7 @@ public class FailFastDatabaseMetaDataImpl extends DatabaseMetaDataWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetImpl)super.getUDTs(catalog, schemaPattern, typeNamePattern, types);
+      return (FailFastResultSetImpl) super.getUDTs(catalog, schemaPattern, typeNamePattern, types);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1822,7 +1822,7 @@ public class FailFastDatabaseMetaDataImpl extends DatabaseMetaDataWrapperImpl {
   @Override
   public FailFastConnectionImpl getConnection() throws SQLException {
     try {
-      return (FailFastConnectionImpl)super.getConnection();
+      return (FailFastConnectionImpl) super.getConnection();
     } catch (Throwable t) {
       getConnectionWrapper().addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1882,7 +1882,7 @@ public class FailFastDatabaseMetaDataImpl extends DatabaseMetaDataWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetImpl)super.getSuperTypes(catalog, schemaPattern, typeNamePattern);
+      return (FailFastResultSetImpl) super.getSuperTypes(catalog, schemaPattern, typeNamePattern);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1894,7 +1894,7 @@ public class FailFastDatabaseMetaDataImpl extends DatabaseMetaDataWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetImpl)super.getSuperTables(catalog, schemaPattern, tableNamePattern);
+      return (FailFastResultSetImpl) super.getSuperTables(catalog, schemaPattern, tableNamePattern);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1906,7 +1906,7 @@ public class FailFastDatabaseMetaDataImpl extends DatabaseMetaDataWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetImpl)super.getAttributes(catalog, schemaPattern, typeNamePattern, attributeNamePattern);
+      return (FailFastResultSetImpl) super.getAttributes(catalog, schemaPattern, typeNamePattern, attributeNamePattern);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -2038,7 +2038,7 @@ public class FailFastDatabaseMetaDataImpl extends DatabaseMetaDataWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetImpl)super.getSchemas(catalog, schemaPattern);
+      return (FailFastResultSetImpl) super.getSchemas(catalog, schemaPattern);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -2074,7 +2074,7 @@ public class FailFastDatabaseMetaDataImpl extends DatabaseMetaDataWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetImpl)super.getClientInfoProperties();
+      return (FailFastResultSetImpl) super.getClientInfoProperties();
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -2086,7 +2086,7 @@ public class FailFastDatabaseMetaDataImpl extends DatabaseMetaDataWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetImpl)super.getFunctions(catalog, schemaPattern, functionNamePattern);
+      return (FailFastResultSetImpl) super.getFunctions(catalog, schemaPattern, functionNamePattern);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -2098,7 +2098,7 @@ public class FailFastDatabaseMetaDataImpl extends DatabaseMetaDataWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetImpl)super.getFunctionColumns(catalog, schemaPattern, functionNamePattern, columnNamePattern);
+      return (FailFastResultSetImpl) super.getFunctionColumns(catalog, schemaPattern, functionNamePattern, columnNamePattern);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -2110,7 +2110,7 @@ public class FailFastDatabaseMetaDataImpl extends DatabaseMetaDataWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetImpl)super.getPseudoColumns(catalog, schemaPattern, tableNamePattern, columnNamePattern);
+      return (FailFastResultSetImpl) super.getPseudoColumns(catalog, schemaPattern, tableNamePattern, columnNamePattern);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -2152,6 +2152,7 @@ public class FailFastDatabaseMetaDataImpl extends DatabaseMetaDataWrapperImpl {
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
     }
   }
+
   @Override
   public boolean supportsSharding() throws SQLException {
     FailFastConnectionImpl ffConn = getConnectionWrapper();

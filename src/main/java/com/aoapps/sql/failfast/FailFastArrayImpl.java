@@ -44,7 +44,7 @@ public class FailFastArrayImpl extends ArrayWrapperImpl {
 
   @Override
   protected FailFastConnectionImpl getConnectionWrapper() {
-    return (FailFastConnectionImpl)super.getConnectionWrapper();
+    return (FailFastConnectionImpl) super.getConnectionWrapper();
   }
 
   @Override
@@ -124,7 +124,7 @@ public class FailFastArrayImpl extends ArrayWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetImpl)super.getResultSet();
+      return (FailFastResultSetImpl) super.getResultSet();
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -136,7 +136,7 @@ public class FailFastArrayImpl extends ArrayWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetImpl)super.getResultSet(map);
+      return (FailFastResultSetImpl) super.getResultSet(map);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -148,7 +148,7 @@ public class FailFastArrayImpl extends ArrayWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetImpl)super.getResultSet(index, count);
+      return (FailFastResultSetImpl) super.getResultSet(index, count);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -160,7 +160,7 @@ public class FailFastArrayImpl extends ArrayWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetImpl)super.getResultSet(index, count, map);
+      return (FailFastResultSetImpl) super.getResultSet(index, count, map);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);

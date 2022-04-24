@@ -42,7 +42,7 @@ public class FailFastBlobImpl extends BlobWrapperImpl {
 
   @Override
   protected FailFastConnectionImpl getConnectionWrapper() {
-    return (FailFastConnectionImpl)super.getConnectionWrapper();
+    return (FailFastConnectionImpl) super.getConnectionWrapper();
   }
 
   @Override
@@ -74,7 +74,7 @@ public class FailFastBlobImpl extends BlobWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastInputStream)super.getBinaryStream();
+      return (FailFastInputStream) super.getBinaryStream();
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -134,7 +134,7 @@ public class FailFastBlobImpl extends BlobWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastOutputStream)super.setBinaryStream(pos);
+      return (FailFastOutputStream) super.setBinaryStream(pos);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -168,7 +168,7 @@ public class FailFastBlobImpl extends BlobWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastInputStream)super.getBinaryStream(pos, length);
+      return (FailFastInputStream) super.getBinaryStream(pos, length);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);

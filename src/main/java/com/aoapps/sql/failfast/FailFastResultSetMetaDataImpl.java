@@ -42,7 +42,7 @@ public class FailFastResultSetMetaDataImpl extends ResultSetMetaDataWrapperImpl 
 
   @Override
   protected FailFastConnectionImpl getConnectionWrapper() {
-    return (FailFastConnectionImpl)super.getConnectionWrapper();
+    return (FailFastConnectionImpl) super.getConnectionWrapper();
   }
 
   @Override

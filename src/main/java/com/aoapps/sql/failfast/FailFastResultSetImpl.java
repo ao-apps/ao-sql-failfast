@@ -61,7 +61,7 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
 
   @Override
   protected FailFastConnectionImpl getConnectionWrapper() {
-    return (FailFastConnectionImpl)super.getConnectionWrapper();
+    return (FailFastConnectionImpl) super.getConnectionWrapper();
   }
 
   @Override
@@ -195,7 +195,7 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
   }
 
   @Override
-  @Deprecated(since="1.2")
+  @Deprecated(since = "1.2")
   public BigDecimal getBigDecimal(int columnIndex, int scale) throws SQLException {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
@@ -260,7 +260,7 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastInputStream)super.getAsciiStream(columnIndex);
+      return (FailFastInputStream) super.getAsciiStream(columnIndex);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -268,12 +268,12 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
   }
 
   @Override
-  @Deprecated(since="1.2")
+  @Deprecated(since = "1.2")
   public FailFastInputStream getUnicodeStream(int columnIndex) throws SQLException {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastInputStream)super.getUnicodeStream(columnIndex);
+      return (FailFastInputStream) super.getUnicodeStream(columnIndex);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -285,7 +285,7 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastInputStream)super.getBinaryStream(columnIndex);
+      return (FailFastInputStream) super.getBinaryStream(columnIndex);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -389,7 +389,7 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
   }
 
   @Override
-  @Deprecated(since="1.2")
+  @Deprecated(since = "1.2")
   public BigDecimal getBigDecimal(String columnLabel, int scale) throws SQLException {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
@@ -454,7 +454,7 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastInputStream)super.getAsciiStream(columnLabel);
+      return (FailFastInputStream) super.getAsciiStream(columnLabel);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -462,12 +462,12 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
   }
 
   @Override
-  @Deprecated(since="1.2")
+  @Deprecated(since = "1.2")
   public FailFastInputStream getUnicodeStream(String columnLabel) throws SQLException {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastInputStream)super.getUnicodeStream(columnLabel);
+      return (FailFastInputStream) super.getUnicodeStream(columnLabel);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -479,7 +479,7 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastInputStream)super.getBinaryStream(columnLabel);
+      return (FailFastInputStream) super.getBinaryStream(columnLabel);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -527,7 +527,7 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastResultSetMetaDataImpl)super.getMetaData();
+      return (FailFastResultSetMetaDataImpl) super.getMetaData();
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -575,7 +575,7 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastReader)super.getCharacterStream(columnIndex);
+      return (FailFastReader) super.getCharacterStream(columnIndex);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -587,7 +587,7 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastReader)super.getCharacterStream(columnLabel);
+      return (FailFastReader) super.getCharacterStream(columnLabel);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1437,7 +1437,7 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastRefImpl)super.getRef(columnIndex);
+      return (FailFastRefImpl) super.getRef(columnIndex);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1449,7 +1449,7 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastBlobImpl)super.getBlob(columnIndex);
+      return (FailFastBlobImpl) super.getBlob(columnIndex);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1461,7 +1461,7 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastClobImpl)super.getClob(columnIndex);
+      return (FailFastClobImpl) super.getClob(columnIndex);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1473,7 +1473,7 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastArrayImpl)super.getArray(columnIndex);
+      return (FailFastArrayImpl) super.getArray(columnIndex);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1497,7 +1497,7 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastRefImpl)super.getRef(columnLabel);
+      return (FailFastRefImpl) super.getRef(columnLabel);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1509,7 +1509,7 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastBlobImpl)super.getBlob(columnLabel);
+      return (FailFastBlobImpl) super.getBlob(columnLabel);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1521,7 +1521,7 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastClobImpl)super.getClob(columnLabel);
+      return (FailFastClobImpl) super.getClob(columnLabel);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1533,7 +1533,7 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastArrayImpl)super.getArray(columnLabel);
+      return (FailFastArrayImpl) super.getArray(columnLabel);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1737,7 +1737,7 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastRowIdImpl)super.getRowId(columnIndex);
+      return (FailFastRowIdImpl) super.getRowId(columnIndex);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1749,7 +1749,7 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastRowIdImpl)super.getRowId(columnLabel);
+      return (FailFastRowIdImpl) super.getRowId(columnLabel);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1855,7 +1855,7 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastNClobImpl)super.getNClob(columnIndex);
+      return (FailFastNClobImpl) super.getNClob(columnIndex);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1867,7 +1867,7 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastNClobImpl)super.getNClob(columnLabel);
+      return (FailFastNClobImpl) super.getNClob(columnLabel);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1879,7 +1879,7 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastSQLXMLImpl)super.getSQLXML(columnIndex);
+      return (FailFastSQLXMLImpl) super.getSQLXML(columnIndex);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1891,7 +1891,7 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastSQLXMLImpl)super.getSQLXML(columnLabel);
+      return (FailFastSQLXMLImpl) super.getSQLXML(columnLabel);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1951,7 +1951,7 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastReader)super.getNCharacterStream(columnIndex);
+      return (FailFastReader) super.getNCharacterStream(columnIndex);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
@@ -1963,7 +1963,7 @@ public class FailFastResultSetImpl extends ResultSetWrapperImpl {
     FailFastConnectionImpl ffConn = getConnectionWrapper();
     ffConn.failFastSQLException();
     try {
-      return (FailFastReader)super.getNCharacterStream(columnLabel);
+      return (FailFastReader) super.getNCharacterStream(columnLabel);
     } catch (Throwable t) {
       ffConn.addFailFastCause(t);
       throw Throwables.wrap(t, SQLException.class, FailFastSQLException::new);
