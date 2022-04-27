@@ -29,4 +29,4 @@ module com.aoapps.sql.failfast {
   requires com.aoapps.sql.wrapper; // <groupId>com.aoapps</groupId><artifactId>ao-sql-wrapper</artifactId>
   // Java SE
   requires java.sql;
-}
+} // TODO: Avoiding rewrite-maven-plugin-4.22.2 truncation
