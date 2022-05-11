@@ -32,7 +32,7 @@ import java.io.Writer;
 import java.nio.CharBuffer;
 
 /**
- * @see  FailFastConnectionImpl
+ * See {@link FailFastConnectionImpl}.
  *
  * @author  AO Industries, Inc.
  */

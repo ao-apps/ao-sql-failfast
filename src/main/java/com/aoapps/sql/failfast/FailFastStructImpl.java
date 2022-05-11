@@ -30,7 +30,7 @@ import java.sql.Struct;
 import java.util.Map;
 
 /**
- * @see  FailFastConnectionImpl
+ * See {@link FailFastConnectionImpl}.
  *
  * @author  AO Industries, Inc.
  */

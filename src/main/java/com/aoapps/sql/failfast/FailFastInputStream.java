@@ -32,7 +32,7 @@ import java.io.OutputStream;
 import java.io.UncheckedIOException;
 
 /**
- * @see  FailFastConnectionImpl
+ * See {@link FailFastConnectionImpl}.
  *
  * @author  AO Industries, Inc.
  */

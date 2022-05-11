@@ -30,7 +30,7 @@ import java.sql.SQLWarning;
 import java.sql.Statement;
 
 /**
- * @see  FailFastConnectionImpl
+ * See {@link FailFastConnectionImpl}.
  *
  * @author  AO Industries, Inc.
  */

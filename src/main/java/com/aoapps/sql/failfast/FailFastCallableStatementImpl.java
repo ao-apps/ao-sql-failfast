@@ -47,7 +47,7 @@ import java.util.Calendar;
 import java.util.Map;
 
 /**
- * @see  FailFastConnectionImpl
+ * See {@link FailFastConnectionImpl}.
  *
  * @author  AO Industries, Inc.
  */

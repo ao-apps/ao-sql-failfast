@@ -31,7 +31,7 @@ import java.sql.RowIdLifetime;
 import java.sql.SQLException;
 
 /**
- * @see  FailFastConnectionImpl
+ * See {@link FailFastConnectionImpl}.
  *
  * @author  AO Industries, Inc.
  */

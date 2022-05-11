@@ -29,7 +29,7 @@ import java.sql.SQLException;
 import java.sql.Savepoint;
 
 /**
- * @see  FailFastConnectionImpl
+ * See {@link FailFastConnectionImpl}.
  *
  * @author  AO Industries, Inc.
  */

@@ -29,7 +29,7 @@ import com.aoapps.sql.wrapper.RowIdWrapperImpl;
 import java.sql.RowId;
 
 /**
- * @see  FailFastConnectionImpl
+ * See {@link FailFastConnectionImpl}.
  *
  * @author  AO Industries, Inc.
  */

@@ -31,7 +31,7 @@ import javax.xml.transform.Result;
 import javax.xml.transform.Source;
 
 /**
- * @see  FailFastConnectionImpl
+ * See {@link FailFastConnectionImpl}.
  *
  * @author  AO Industries, Inc.
  */

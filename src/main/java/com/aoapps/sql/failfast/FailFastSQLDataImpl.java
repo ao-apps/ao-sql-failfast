@@ -31,7 +31,7 @@ import java.sql.SQLInput;
 import java.sql.SQLOutput;
 
 /**
- * @see  FailFastConnectionImpl
+ * See {@link FailFastConnectionImpl}.
  *
  * @author  AO Industries, Inc.
  */

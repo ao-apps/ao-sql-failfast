@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ao-sql-failfast - Fail-fast JDBC wrapper.
+Copyright (C) 2022  AO Industries, Inc.
+    support@aoindustries.com
+    7262 Bull Pen Cir
+    Mobile, AL 36695
+
+This file is part of ao-sql-failfast.
+
+ao-sql-failfast is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ao-sql-failfast is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with ao-sql-failfast.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<!DOCTYPE suppressions PUBLIC
+  "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+  "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+
+<suppressions>
+
+  <!-- Consistency with standard "IOException" -->
+  <suppress
+    checks="AbbreviationAsWordInName"
+    files="[/\\]com[/\\]aoapps[/\\]sql[/\\]failfast[/\\]FailFastConnectionImpl\.java$"
+    message="'failFastIOException'"
+  />
+
+  <!-- Consistency with standard "SQLClientInfoException" -->
+  <suppress
+    checks="AbbreviationAsWordInName"
+    files="[/\\]com[/\\]aoapps[/\\]sql[/\\]failfast[/\\]FailFastConnectionImpl\.java$"
+    message="'failFastSQLClientInfoException'"
+  />
+
+  <!-- Consistency with standard "SQLException" -->
+  <suppress
+    checks="AbbreviationAsWordInName"
+    files="[/\\]com[/\\]aoapps[/\\]sql[/\\]failfast[/\\]AbortedSQLException\.java$"
+    message="'AbortedSQLException'"
+  />
+  <suppress
+    checks="AbbreviationAsWordInName"
+    files="[/\\]com[/\\]aoapps[/\\]sql[/\\]failfast[/\\]ClosedSQLException\.java$"
+    message="'ClosedSQLException'"
+  />
+  <suppress
+    checks="AbbreviationAsWordInName"
+    files="[/\\]com[/\\]aoapps[/\\]sql[/\\]failfast[/\\]FailFastConnectionImpl\.java$"
+    message="'failFastSQLException'"
+  />
+  <suppress
+    checks="AbbreviationAsWordInName"
+    files="[/\\]com[/\\]aoapps[/\\]sql[/\\]failfast[/\\]FailFastSQLException\.java$"
+    message="'FailFastSQLException'"
+  />
+  <suppress
+    checks="AbbreviationAsWordInName"
+    files="[/\\]com[/\\]aoapps[/\\]sql[/\\]failfast[/\\]TerminalSQLException\.java$"
+    message="'TerminalSQLException'"
+  />
+
+  <!-- Consistency with standard JDBC API names -->
+  <suppress
+    checks="ParameterName"
+    files="[/\\]com[/\\]aoapps[/\\]sql[/\\]failfast[/\\]"
+    message="'(nClob|nString)'"
+  />
+  <suppress
+    checks="AbbreviationAsWordInName"
+    files="[/\\]com[/\\]aoapps[/\\]sql[/\\]failfast[/\\]FailFast(NClob|SQLData|SQLInput|SQLOutput|SQLXML)Impl\.java"
+    message="'FailFast(NClob|SQLData|SQLInput|SQLOutput|SQLXML)Impl'"
+  />
+
+  <!-- Will not reorder overloads -->
+  <suppress checks="OverloadMethodsDeclarationOrder" />
+
+</suppressions>

@@ -29,7 +29,7 @@ import java.io.IOException;
 import java.io.Writer;
 
 /**
- * @see  FailFastConnectionImpl
+ * See {@link FailFastConnectionImpl}.
  *
  * @author  AO Industries, Inc.
  */

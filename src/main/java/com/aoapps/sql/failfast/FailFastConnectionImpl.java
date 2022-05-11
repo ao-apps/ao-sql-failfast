@@ -76,6 +76,7 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
   private static class FailFastLock {
     // Empty lock class to help heap profile
   }
+
   private final FailFastLock failFastLock = new FailFastLock();
 
   /**
@@ -168,6 +169,8 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
   }
 
   /**
+   * Performs fail-fast check.
+   *
    * @throws  SQLException  if currently in a fail-fast state
    *
    * @see  Throwables#newSurrogate(java.lang.Throwable)
@@ -206,6 +209,8 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
   }
 
   /**
+   * Performs fail-fast check.
+   *
    * @throws  SQLClientInfoException  if currently in a fail-fast state
    */
   protected void failFastSQLClientInfoException(Supplier<? extends Map<String, ClientInfoStatus>> failedPropertiesSupplier) throws SQLClientInfoException {
@@ -236,6 +241,8 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
   }
 
   /**
+   * Performs fail-fast check.
+   *
    * @throws  IOException  if currently in a fail-fast state
    *
    * @see  Throwables#newSurrogate(java.lang.Throwable)

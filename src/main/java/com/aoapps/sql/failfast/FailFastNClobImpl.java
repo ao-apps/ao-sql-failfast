@@ -30,7 +30,7 @@ import java.sql.NClob;
 import java.sql.SQLException;
 
 /**
- * @see  FailFastConnectionImpl
+ * See {@link FailFastConnectionImpl}.
  *
  * @author  AO Industries, Inc.
  */

@@ -46,7 +46,7 @@ import java.sql.Time;
 import java.sql.Timestamp;
 
 /**
- * @see  FailFastConnectionImpl
+ * See {@link FailFastConnectionImpl}.
  *
  * @author  AO Industries, Inc.
  */

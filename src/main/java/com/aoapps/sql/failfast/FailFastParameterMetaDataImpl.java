@@ -29,7 +29,7 @@ import java.sql.ParameterMetaData;
 import java.sql.SQLException;
 
 /**
- * @see  FailFastConnectionImpl
+ * See {@link FailFastConnectionImpl}.
  *
  * @author  AO Industries, Inc.
  */
