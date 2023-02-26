@@ -22,7 +22,7 @@ Fail-fast JDBC wrapper.
 * [Project Home](https://oss.aoapps.com/sql/failfast/)
 * [Changelog](https://oss.aoapps.com/sql/failfast/changelog)
 * [API Docs](https://oss.aoapps.com/sql/failfast/apidocs/)
-* [Maven Central Repository](https://search.maven.org/artifact/com.aoapps/ao-sql-failfast)
+* [Maven Central Repository](https://central.sonatype.com/search?namespace=com.aoapps&q=a%3Aao-sql-failfast)
 * [GitHub](https://github.com/ao-apps/ao-sql-failfast)
 
 ## Contact Us
