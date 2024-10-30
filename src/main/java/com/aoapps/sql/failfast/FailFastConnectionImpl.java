@@ -1,6 +1,6 @@
 /*
  * ao-sql-failfast - Fail-fast JDBC wrapper.
- * Copyright (C) 2020, 2021, 2022  AO Industries, Inc.
+ * Copyright (C) 2020, 2021, 2022, 2024  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -1055,13 +1055,11 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
 
   /**
    * {@inheritDoc}
-   * <p>
-   * Either this method or {@link #doAbort(java.lang.Throwable, java.util.concurrent.Executor)} is called, and at most
-   * once.  Once either is called, additional close/abort requests are ignored.
-   * </p>
-   * <p>
-   * This default implementation calls {@code super.close()}.
-   * </p>
+   *
+   * <p>Either this method or {@link #doAbort(java.lang.Throwable, java.util.concurrent.Executor)} is called, and at most
+   * once.  Once either is called, additional close/abort requests are ignored.</p>
+   *
+   * <p>This default implementation calls {@code super.close()}.</p>
    *
    * @param  failFastCause  The fail-fast state before close.
    */
@@ -1071,13 +1069,11 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
 
   /**
    * {@inheritDoc}
-   * <p>
-   * Either this method or {@link #doClose(java.lang.Throwable)} is called, and at most once.  Once either is called,
-   * additional close/abort requests are ignored.
-   * </p>
-   * <p>
-   * This default implementation calls {@code super.abort(executor)}.
-   * </p>
+   *
+   * <p>Either this method or {@link #doClose(java.lang.Throwable)} is called, and at most once.  Once either is called,
+   * additional close/abort requests are ignored.</p>
+   *
+   * <p>This default implementation calls {@code super.abort(executor)}.</p>
    *
    * @param  failFastCause  The fail-fast state before close.
    */

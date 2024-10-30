@@ -1,6 +1,6 @@
 /*
  * ao-sql-failfast - Fail-fast JDBC wrapper.
- * Copyright (C) 2020, 2021, 2022  AO Industries, Inc.
+ * Copyright (C) 2020, 2021, 2022, 2024  AO Industries, Inc.
  *     support@aoindustries.com
  *     7262 Bull Pen Cir
  *     Mobile, AL 36695
@@ -93,18 +93,15 @@ public interface FailFastConnection extends Wrapper, Connection {
    *   {@link FailFastConnection#rollback()} or {@link FailFastConnection#rollback(java.sql.Savepoint)}.
    * </li>
    * </ol>
-   * <p>
-   * Higher precedence causes will suppress any existing cause of a lower precedence (new adds the current as
-   * suppressed).
-   * </p>
-   * <p>
-   * Lower precedence causes will be suppressed by any existing cause of higher precedence (current adds the new as
-   * suppressed).
-   * </p>
-   * <p>
-   * Causes within the same precedence are merged via
-   * {@link Throwables#addSuppressed(java.lang.Throwable, java.lang.Throwable)}.
-   * </p>
+   *
+   * <p>Higher precedence causes will suppress any existing cause of a lower precedence (new adds the current as
+   * suppressed).</p>
+   *
+   * <p>Lower precedence causes will be suppressed by any existing cause of higher precedence (current adds the new as
+   * suppressed).</p>
+   *
+   * <p>Causes within the same precedence are merged via
+   * {@link Throwables#addSuppressed(java.lang.Throwable, java.lang.Throwable)}.</p>
    *
    * @param  cause  The additional cause, ignored when {@code null}
    */
@@ -112,10 +109,9 @@ public interface FailFastConnection extends Wrapper, Connection {
 
   /**
    * Gets the cause of the current fail-fast state.
-   * <p>
-   * This might involve creating a new exception, so {@link #getFailFastState()} may be faster when the exact cause
-   * is not required.
-   * </p>
+   *
+   * <p>This might involve creating a new exception, so {@link #getFailFastState()} may be faster when the exact cause
+   * is not required.</p>
    *
    * @return  The cause or {@code null} when not in failure state (operating normally).
    *
@@ -163,10 +159,9 @@ public interface FailFastConnection extends Wrapper, Connection {
   /**
    * Puts the connection into a terminal {@link ClosedSQLException} fail-fast state then calls
    * {@link FailFastConnectionImpl#doClose(java.lang.Throwable)}.
-   * <p>
-   * When already in a terminal state (closed or aborted), is a no-op and does not call
-   * {@link FailFastConnectionImpl#doClose(java.lang.Throwable)}.
-   * </p>
+   *
+   * <p>When already in a terminal state (closed or aborted), is a no-op and does not call
+   * {@link FailFastConnectionImpl#doClose(java.lang.Throwable)}.</p>
    *
    * @see  #addFailFastCause(java.lang.Throwable)
    * @see  ClosedSQLException
@@ -189,10 +184,9 @@ public interface FailFastConnection extends Wrapper, Connection {
   /**
    * Puts the connection into a terminal {@link AbortedSQLException} fail-fast state then calls
    * {@link FailFastConnectionImpl#doAbort(java.lang.Throwable, java.util.concurrent.Executor)}.
-   * <p>
-   * When already in a terminal state (closed or aborted), is a no-op and does not call
-   * {@link FailFastConnectionImpl#doAbort(java.lang.Throwable, java.util.concurrent.Executor)}
-   * </p>
+   *
+   * <p>When already in a terminal state (closed or aborted), is a no-op and does not call
+   * {@link FailFastConnectionImpl#doAbort(java.lang.Throwable, java.util.concurrent.Executor)}</p>
    *
    * @see  #addFailFastCause(java.lang.Throwable)
    * @see  AbortedSQLException
