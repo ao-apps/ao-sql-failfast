@@ -34,12 +34,12 @@ public abstract class TerminalSQLException extends FailFastSQLException {
 
   private static final long serialVersionUID = 1L;
 
-  ///**
-  // * Creates a new exception that puts a connection into a terminal state.
-  // */
-  //public TerminalSQLException(String reason, String sqlState, int vendorCode) {
-  //  super(reason, sqlState, vendorCode);
-  //}
+  // /**
+  //  * Creates a new exception that puts a connection into a terminal state.
+  //  */
+  // public TerminalSQLException(String reason, String sqlState, int vendorCode) {
+  //   super(reason, sqlState, vendorCode);
+  // }
 
   /**
    * Creates a new exception that puts a connection into a terminal state.
@@ -58,33 +58,33 @@ public abstract class TerminalSQLException extends FailFastSQLException {
     super(reason);
   }
 
-  ///**
-  // * Creates a new exception that puts a connection into a terminal state.
-  // */
-  //protected TerminalSQLException() {
-  //  super();
-  //}
+  // /**
+  //  * Creates a new exception that puts a connection into a terminal state.
+  //  */
+  // protected TerminalSQLException() {
+  //   super();
+  // }
 
-  ///**
-  // * Creates a new exception that puts a connection into a terminal state.
-  // */
-  //protected TerminalSQLException(Throwable cause) {
-  //  super(cause);
-  //}
+  // /**
+  //  * Creates a new exception that puts a connection into a terminal state.
+  //  */
+  // protected TerminalSQLException(Throwable cause) {
+  //   super(cause);
+  // }
 
-  ///**
-  // * Creates a new exception that puts a connection into a terminal state.
-  // */
-  //protected TerminalSQLException(String reason, Throwable cause) {
-  //  super(reason, cause);
-  //}
+  // /**
+  //  * Creates a new exception that puts a connection into a terminal state.
+  //  */
+  // protected TerminalSQLException(String reason, Throwable cause) {
+  //   super(reason, cause);
+  // }
 
-  ///**
-  // * Creates a new exception that puts a connection into a terminal state.
-  // */
-  //protected TerminalSQLException(String reason, String sqlState, Throwable cause) {
-  //  super(reason, sqlState, cause);
-  //}
+  // /**
+  //  * Creates a new exception that puts a connection into a terminal state.
+  //  */
+  // protected TerminalSQLException(String reason, String sqlState, Throwable cause) {
+  //   super(reason, sqlState, cause);
+  // }
 
   /**
    * Creates a new exception that puts a connection into a terminal state.

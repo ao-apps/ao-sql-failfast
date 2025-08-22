@@ -48,26 +48,26 @@ public class AbortedSQLException extends TerminalSQLException {
     FAST_MARKER_KEEP_PRIVATE.setStackTrace(new StackTraceElement[0]);
   }
 
-  ///**
-  // * Creates a new terminal state when a {@linkplain Connection#abort(java.util.concurrent.Executor) connection is aborted}.
-  // */
-  //public AbortedSQLException(String reason, String sqlState, int vendorCode) {
-  //  super(reason, sqlState, vendorCode);
-  //}
+  // /**
+  //  * Creates a new terminal state when a {@linkplain Connection#abort(java.util.concurrent.Executor) connection is aborted}.
+  //  */
+  // public AbortedSQLException(String reason, String sqlState, int vendorCode) {
+  //   super(reason, sqlState, vendorCode);
+  // }
 
-  ///**
-  // * Creates a new terminal state when a {@linkplain Connection#abort(java.util.concurrent.Executor) connection is aborted}.
-  // */
-  //public AbortedSQLException(String reason, String sqlState) {
-  //  super(reason, sqlState);
-  //}
+  // /**
+  //  * Creates a new terminal state when a {@linkplain Connection#abort(java.util.concurrent.Executor) connection is aborted}.
+  //  */
+  // public AbortedSQLException(String reason, String sqlState) {
+  //   super(reason, sqlState);
+  // }
 
-  ///**
-  // * Creates a new terminal state when a {@linkplain Connection#abort(java.util.concurrent.Executor) connection is aborted}.
-  // */
-  //public AbortedSQLException(String reason) {
-  //  super(reason);
-  //}
+  // /**
+  //  * Creates a new terminal state when a {@linkplain Connection#abort(java.util.concurrent.Executor) connection is aborted}.
+  //  */
+  // public AbortedSQLException(String reason) {
+  //   super(reason);
+  // }
 
   /**
    * Creates a new terminal state when a {@linkplain Connection#abort(java.util.concurrent.Executor) connection is aborted}.
@@ -76,35 +76,35 @@ public class AbortedSQLException extends TerminalSQLException {
     super("Connection aborted", "08003");
   }
 
-  ///**
-  // * Creates a new terminal state when a {@linkplain Connection#abort(java.util.concurrent.Executor) connection is aborted}.
-  // */
-  //public AbortedSQLException(Throwable cause) {
-  //  super(cause);
-  //  if (cause == FAST_MARKER_KEEP_PRIVATE) {
-  //    throw new IllegalArgumentException();
-  //  }
-  //}
+  // /**
+  //  * Creates a new terminal state when a {@linkplain Connection#abort(java.util.concurrent.Executor) connection is aborted}.
+  //  */
+  // public AbortedSQLException(Throwable cause) {
+  //   super(cause);
+  //   if (cause == FAST_MARKER_KEEP_PRIVATE) {
+  //     throw new IllegalArgumentException();
+  //   }
+  // }
 
-  ///**
-  // * Creates a new terminal state when a {@linkplain Connection#abort(java.util.concurrent.Executor) connection is aborted}.
-  // */
-  //public AbortedSQLException(String reason, Throwable cause) {
-  //  super(reason, cause);
-  //  if (cause == FAST_MARKER_KEEP_PRIVATE) {
-  //    throw new IllegalArgumentException();
-  //  }
-  //}
+  // /**
+  //  * Creates a new terminal state when a {@linkplain Connection#abort(java.util.concurrent.Executor) connection is aborted}.
+  //  */
+  // public AbortedSQLException(String reason, Throwable cause) {
+  //   super(reason, cause);
+  //   if (cause == FAST_MARKER_KEEP_PRIVATE) {
+  //     throw new IllegalArgumentException();
+  //   }
+  // }
 
-  ///**
-  // * Creates a new terminal state when a {@linkplain Connection#abort(java.util.concurrent.Executor) connection is aborted}.
-  // */
-  //public AbortedSQLException(String reason, String sqlState, Throwable cause) {
-  //  super(reason, sqlState, cause);
-  //  if (cause == FAST_MARKER_KEEP_PRIVATE) {
-  //    throw new IllegalArgumentException();
-  //  }
-  //}
+  // /**
+  //  * Creates a new terminal state when a {@linkplain Connection#abort(java.util.concurrent.Executor) connection is aborted}.
+  //  */
+  // public AbortedSQLException(String reason, String sqlState, Throwable cause) {
+  //   super(reason, sqlState, cause);
+  //   if (cause == FAST_MARKER_KEEP_PRIVATE) {
+  //     throw new IllegalArgumentException();
+  //   }
+  // }
 
   /**
    * Creates a new terminal state when a {@linkplain Connection#abort(java.util.concurrent.Executor) connection is aborted}.

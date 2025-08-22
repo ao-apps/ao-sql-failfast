@@ -35,12 +35,12 @@ public class FailFastSQLException extends SQLException {
 
   private static final long serialVersionUID = 1L;
 
-  ///**
-  // * Creates an exception to enforce the fail-fast state.
-  // */
-  //public FailFastSQLException(String reason, String sqlState, int vendorCode) {
-  //  super(reason, sqlState, vendorCode);
-  //}
+  // /**
+  //  * Creates an exception to enforce the fail-fast state.
+  //  */
+  // public FailFastSQLException(String reason, String sqlState, int vendorCode) {
+  //   super(reason, sqlState, vendorCode);
+  // }
 
   /**
    * Creates an exception to enforce the fail-fast state.
@@ -59,12 +59,12 @@ public class FailFastSQLException extends SQLException {
     super(reason, "25000");
   }
 
-  ///**
-  // * Creates an exception to enforce the fail-fast state.
-  // */
-  //public FailFastSQLException() {
-  //  super();
-  //}
+  // /**
+  //  * Creates an exception to enforce the fail-fast state.
+  //  */
+  // public FailFastSQLException() {
+  //   super();
+  // }
 
   /**
    * Creates an exception to enforce the fail-fast state.
@@ -73,19 +73,19 @@ public class FailFastSQLException extends SQLException {
     super("In fail-fast connection state: clearFailFast, rollback, close, or abort required", "25000", cause);
   }
 
-  ///**
-  // * Creates an exception to enforce the fail-fast state.
-  // */
-  //public FailFastSQLException(String reason, Throwable cause) {
-  //  super(reason, cause);
-  //}
+  // /**
+  //  * Creates an exception to enforce the fail-fast state.
+  //  */
+  // public FailFastSQLException(String reason, Throwable cause) {
+  //   super(reason, cause);
+  // }
 
-  ///**
-  // * Creates an exception to enforce the fail-fast state.
-  // */
-  //public FailFastSQLException(String reason, String sqlState, Throwable cause) {
-  //  super(reason, sqlState, cause);
-  //}
+  // /**
+  //  * Creates an exception to enforce the fail-fast state.
+  //  */
+  // public FailFastSQLException(String reason, String sqlState, Throwable cause) {
+  //   super(reason, sqlState, cause);
+  // }
 
   /**
    * Creates an exception to enforce the fail-fast state.
