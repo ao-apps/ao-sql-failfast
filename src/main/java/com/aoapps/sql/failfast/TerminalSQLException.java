@@ -51,7 +51,7 @@ public abstract class TerminalSQLException extends FailFastSQLException {
   /**
    * Creates a new exception that puts a connection into a terminal state.
    *
-   * @deprecated  Please provide SQLSTATE to {@link #TerminalSQLException(java.lang.String, java.lang.String)}
+   * @deprecated  Please provide SQLSTATE to {@link TerminalSQLException#TerminalSQLException(java.lang.String, java.lang.String)}
    */
   @Deprecated(forRemoval = false)
   protected TerminalSQLException(String reason) {

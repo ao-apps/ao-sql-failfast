@@ -52,7 +52,7 @@ public class FailFastSQLException extends SQLException {
   /**
    * Creates an exception to enforce the fail-fast state.
    *
-   * @deprecated  Please provide SQLSTATE to {@link #FailFastSQLException(java.lang.String, java.lang.String)}
+   * @deprecated  Please provide SQLSTATE to {@link FailFastSQLException#FailFastSQLException(java.lang.String, java.lang.String)}
    */
   @Deprecated(forRemoval = false)
   public FailFastSQLException(String reason) {

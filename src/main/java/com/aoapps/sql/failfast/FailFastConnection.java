@@ -48,7 +48,7 @@ public interface FailFastConnection extends Wrapper, Connection {
   /**
    * The set of possible fail-fast states.
    *
-   * @see  #getFailFastState()
+   * @see  FailFastConnection#getFailFastState()
    */
   // TODO: Add more states based on the type of SQLException and/or its SQLState.  Particularly to distinguish exceptions that will not require connection validation.
   enum State {
@@ -110,12 +110,12 @@ public interface FailFastConnection extends Wrapper, Connection {
   /**
    * Gets the cause of the current fail-fast state.
    *
-   * <p>This might involve creating a new exception, so {@link #getFailFastState()} may be faster when the exact cause
+   * <p>This might involve creating a new exception, so {@link FailFastConnection#getFailFastState()} may be faster when the exact cause
    * is not required.</p>
    *
    * @return  The cause or {@code null} when not in failure state (operating normally).
    *
-   * @see  #getFailFastState()
+   * @see  FailFastConnection#getFailFastState()
    */
   Throwable getFailFastCause();
 
@@ -124,7 +124,7 @@ public interface FailFastConnection extends Wrapper, Connection {
    *
    * @return  The state or {@link State#OK} when not in failure state (operating normally).
    *
-   * @see  #getFailFastCause()
+   * @see  FailFastConnection#getFailFastCause()
    */
   State getFailFastState();
 
@@ -140,14 +140,14 @@ public interface FailFastConnection extends Wrapper, Connection {
    *
    * @throws  TerminalSQLException if the connection is in a terminal fail-fast state, such as closed or aborted.
    *
-   * @see  #getFailFastCause()
+   * @see  FailFastConnection#getFailFastCause()
    */
   // TODO: Should this still be part of the interface and have a public implementation method?
   Throwable clearFailFast() throws TerminalSQLException;
 
   /**
    * When not in a {@linkplain TerminalSQLException terminal fail-fast state}, will
-   * {@link #clearFailFast() clear the fail-fast state} upon a successful call to
+   * {@link FailFastConnection#clearFailFast() clear the fail-fast state} upon a successful call to
    * {@code super.rollback()}.
    *
    * @throws  TerminalSQLException if already in a terminal fail-fast state
@@ -163,7 +163,7 @@ public interface FailFastConnection extends Wrapper, Connection {
    * <p>When already in a terminal state (closed or aborted), is a no-op and does not call
    * {@link FailFastConnectionImpl#doClose(java.lang.Throwable)}.</p>
    *
-   * @see  #addFailFastCause(java.lang.Throwable)
+   * @see  FailFastConnection#addFailFastCause(java.lang.Throwable)
    * @see  ClosedSQLException
    * @see  FailFastConnectionImpl#doClose(java.lang.Throwable)
    */
@@ -172,7 +172,7 @@ public interface FailFastConnection extends Wrapper, Connection {
 
   /**
    * When not in a {@linkplain TerminalSQLException terminal fail-fast state}, will
-   * {@link #clearFailFast() clear the fail-fast state} upon a successful call to
+   * {@link FailFastConnection#clearFailFast() clear the fail-fast state} upon a successful call to
    * {@code super.rollback(savepoint)}.
    *
    * @throws  FailFastSQLException if already in a terminal fail-fast state
@@ -188,7 +188,7 @@ public interface FailFastConnection extends Wrapper, Connection {
    * <p>When already in a terminal state (closed or aborted), is a no-op and does not call
    * {@link FailFastConnectionImpl#doAbort(java.lang.Throwable, java.util.concurrent.Executor)}</p>
    *
-   * @see  #addFailFastCause(java.lang.Throwable)
+   * @see  FailFastConnection#addFailFastCause(java.lang.Throwable)
    * @see  AbortedSQLException
    * @see  FailFastConnectionImpl#doAbort(java.lang.Throwable, java.util.concurrent.Executor)
    */

@@ -81,7 +81,7 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
 
   /**
    * The current fail-fast cause.  Any read-only operation may access it without synchronization.  All updates must
-   * be synchronized on {@link #failFastLock}, since updates are multi-step operations for managing suppressed
+   * be synchronized on {@link FailFastConnectionImpl#failFastLock}, since updates are multi-step operations for managing suppressed
    * throwables.
    */
   private volatile Throwable failFastCause;
@@ -1056,7 +1056,7 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
   /**
    * {@inheritDoc}
    *
-   * <p>Either this method or {@link #doAbort(java.lang.Throwable, java.util.concurrent.Executor)} is called, and at most
+   * <p>Either this method or {@link FailFastConnectionImpl#doAbort(java.lang.Throwable, java.util.concurrent.Executor)} is called, and at most
    * once.  Once either is called, additional close/abort requests are ignored.</p>
    *
    * <p>This default implementation calls {@code super.close()}.</p>
@@ -1070,7 +1070,7 @@ public class FailFastConnectionImpl extends ConnectionWrapperImpl implements Fai
   /**
    * {@inheritDoc}
    *
-   * <p>Either this method or {@link #doClose(java.lang.Throwable)} is called, and at most once.  Once either is called,
+   * <p>Either this method or {@link FailFastConnectionImpl#doClose(java.lang.Throwable)} is called, and at most once.  Once either is called,
    * additional close/abort requests are ignored.</p>
    *
    * <p>This default implementation calls {@code super.abort(executor)}.</p>
