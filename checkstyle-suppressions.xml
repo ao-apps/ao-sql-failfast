@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 ao-sql-failfast - Fail-fast JDBC wrapper.
-Copyright (C) 2022, 2024  AO Industries, Inc.
+Copyright (C) 2022, 2024, 2026  AO Industries, Inc.
     support@aoindustries.com
     7262 Bull Pen Cir
     Mobile, AL 36695
@@ -32,14 +32,14 @@ along with ao-sql-failfast.  If not, see <https://www.gnu.org/licenses/>.
 
   <!-- Consistency with standard "IOException" -->
   <suppress
-    checks="AbbreviationAsWordInName"
+    checks="(GoogleMethodName|AbbreviationAsWordInName)"
     files="[/\\]com[/\\]aoapps[/\\]sql[/\\]failfast[/\\]FailFastConnectionImpl\.java$"
     message="'failFastIOException'"
   />
 
   <!-- Consistency with standard "SQLClientInfoException" -->
   <suppress
-    checks="AbbreviationAsWordInName"
+    checks="(GoogleMethodName|AbbreviationAsWordInName)"
     files="[/\\]com[/\\]aoapps[/\\]sql[/\\]failfast[/\\]FailFastConnectionImpl\.java$"
     message="'failFastSQLClientInfoException'"
   />
@@ -56,7 +56,7 @@ along with ao-sql-failfast.  If not, see <https://www.gnu.org/licenses/>.
     message="'ClosedSQLException'"
   />
   <suppress
-    checks="AbbreviationAsWordInName"
+    checks="(GoogleMethodName|AbbreviationAsWordInName)"
     files="[/\\]com[/\\]aoapps[/\\]sql[/\\]failfast[/\\]FailFastConnectionImpl\.java$"
     message="'failFastSQLException'"
   />
